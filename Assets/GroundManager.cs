@@ -51,6 +51,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         else
         {
             Player.selectedPlayer.PlayAnimation("Run");
+            FollowTarget.Instance.SetTarget(Player.selectedPlayer.transform);
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
@@ -60,6 +61,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             }
             Player.selectedPlayer.PlayAnimation("Idle");
         }
+        FollowTarget.Instance.SetTarget(null);
     }
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)

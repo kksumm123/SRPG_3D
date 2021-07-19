@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowTarget : SingletonMonoBehavior<FollowTarget>
 {
     Transform target;
-    [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 offset = new Vector3(0, 0, -7);
 
     public void SetTarget(Transform _target)
     {
