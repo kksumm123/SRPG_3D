@@ -6,7 +6,7 @@ public class GroundManager : MonoBehaviour
 {
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
-    [SerializeField] Dictionary<Vector2Int, int> map; // 블록 맵 지정하기
+    [SerializeField] Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
     [SerializeField] List<int> passableValues; // TilType을 int로 받기
     //enum TileType
     //{
@@ -34,14 +34,14 @@ public class GroundManager : MonoBehaviour
         foreach (var item in blockInfos)
         {
             var pos = transform.position;
-            Vector2Int intPos = new Vector2Int((int)pos.x, (int)pos.y);
+            Vector2Int intPos = new Vector2Int((int)pos.x, (int)pos.z);
             map[intPos] = (int)item.blockType;
         }
         playerPos.x = (int)player.position.x;
-        playerPos.y = (int)player.position.y;
+        playerPos.y = (int)player.position.z;
 
-        goalPos.x = (int)goal.position.x;
-        goalPos.y = (int)goal.position.y;
+        goalPos.x = (int)goal.position.x; 
+        goalPos.y = (int)goal.position.z;
 
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
