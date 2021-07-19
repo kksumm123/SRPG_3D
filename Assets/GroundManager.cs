@@ -13,12 +13,47 @@ public class GroundManager : MonoBehaviour
     //    Walkable, // 갈 수 있는 지역
     //    Wall, // 갈 수 없는 지역
     //}
+
+    public Transform player;
+    public Transform goal;
+    [ContextMenu("길찾기 테스트")]
     void Start()
     {
+        StartCoroutine(FindPathCo());
+    }
+
+    IEnumerator FindPathCo()
+    { 
         passableValues = new List<int>();
         passableValues.Add((int)BlockType.Walkable);
 
-        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
-    }
+        // 자식의 모든 BlockInfo 찾자
+        var blockInfos = GetComponentsInChildren<BlockInfo>();
 
+        // 맵을 채워넣자
+        foreach (var item in blockInfos)
+        {
+            var pos = transform.position;
+            Vector2Int intPos = new Vector2Int((int)pos.x, (int)pos.y);
+            map[intPos] = (int)item.blockType;
+        }
+        playerPos.x = (int)player.position.x;
+        playerPos.y = (int)player.position.y;
+
+        goalPos.x = (int)goal.position.x;
+        goalPos.y = (int)goal.position.y;
+
+        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
+        if (path.Count == 0)
+            Debug.Log("길 업따 !");
+        else
+        {
+            foreach (var item in path)
+            {
+                Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
+                player.position = playerNewPos;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
 }
