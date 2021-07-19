@@ -5,30 +5,22 @@ using UnityEngine;
 
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
+    Transform player;
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
-    [SerializeField] Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
-
-
+    [SerializeField] Dictionary<Vector2Int, int> map 
+        = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
     [SerializeField] List<int> passableValues; // TilType을 int로 받기
-    //enum TileType
-    //{
-    //    Walkable, // 갈 수 있는 지역
-    //    Wall, // 갈 수 없는 지역
-    //}
-    public void OnTouch(Vector3 position)
+
+    private void Start()
     {
-        Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
-        FindPath(findPos);
+        player = GameObject.FindWithTag("Player").transform;
     }
 
-    public Transform player;
-    public Transform goal;
     void FindPath(Vector2Int goalPos)
     {
         StartCoroutine(FindPathCo(goalPos));
     }
-
     IEnumerator FindPathCo(Vector2Int goalPos)
     { 
         passableValues = new List<int>();
@@ -59,5 +51,10 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 yield return new WaitForSeconds(0.5f);
             }
         }
+    }
+    public void OnTouch(Vector3 position)
+    {
+        Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
+        FindPath(findPos);
     }
 }

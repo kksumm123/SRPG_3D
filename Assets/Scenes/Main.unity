@@ -7907,7 +7907,7 @@ GameObject:
   - component: {fileID: 627398624}
   m_Layer: 0
   m_Name: Environment
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8346,11 +8346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205a3b3b0c78b1b48a852870ad201576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
   playerPos: {x: 0, y: 0}
   goalPos: {x: 0, y: 0}
   passableValues: 
-  player: {fileID: 1308865589}
-  goal: {fileID: 1031241807}
 --- !u!1001 &629338683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16722,11 +16721,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockType: 0
---- !u!4 &1308865589 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400080, guid: 9759788f6132dd84da11e946ab72d663, type: 3}
-  m_PrefabInstance: {fileID: 480409417}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1309893762
 PrefabInstance:
   m_ObjectHideFlags: 0
