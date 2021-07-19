@@ -48,6 +48,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             Debug.Log("길 업따 !");
         else
         {
+            Player.selectedPlayer.PlayAnimation("Run");
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
@@ -55,6 +56,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 player.position = playerNewPos;
                 yield return new WaitForSeconds(moveDelay);
             }
+            Player.selectedPlayer.PlayAnimation("Idle");
         }
     }
     public void OnTouch(Vector3 position)

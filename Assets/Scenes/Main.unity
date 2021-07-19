@@ -8286,6 +8286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completeUiInite: 0
+  moveDelay: 0.3
   playerPos: {x: 0, y: 0}
   goalPos: {x: 0, y: 0}
   passableValues: 
@@ -21670,6 +21671,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockType: 0
+--- !u!1 &1662010843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4546894799720371611, guid: 631f013cdc5077141a0b448c66ec4fe6, type: 3}
+  m_PrefabInstance: {fileID: 8094114717333950570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1662010844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662010843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c44053dda2f544b5123c4ece04f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662189054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1640771308685042, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
