@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
+    [SerializeField] float rotatelerpValue = 0.05f;
     Transform player;
     [SerializeField] float moveDelay = 0.3f;
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
@@ -53,14 +54,25 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
-                player.LookAt(playerNewPos);
-                //player.position = playerNewPos;
+                StartCoroutine(PlayerLookAtLerp(playerNewPos));
                 player.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(moveDelay);
             }
             Player.selectedPlayer.PlayAnimation("Idle");
         }
     }
+
+    IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
+    {
+        var endTime = Time.time + moveDelay;
+        while (endTime > Time.time)
+        {
+            player.forward = Vector3.Slerp(player.forward
+                    , (playerNewPos - player.position).normalized, rotatelerpValue);
+            yield return null;
+        }
+    }
+
     public void OnTouch(Vector3 position)
     {
         Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
