@@ -8,7 +8,8 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     Transform player;
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
-    [SerializeField] Dictionary<Vector2Int, int> map 
+    [SerializeField]
+    Dictionary<Vector2Int, int> map
         = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
     [SerializeField] List<int> passableValues; // TilType을 int로 받기
 
@@ -17,12 +18,14 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         player = GameObject.FindWithTag("Player").transform;
     }
 
+    Coroutine findPathCoHandle;
     void FindPath(Vector2Int goalPos)
     {
-        StartCoroutine(FindPathCo(goalPos));
+        StopCo(findPathCoHandle);
+        findPathCoHandle = StartCoroutine(FindPathCo(goalPos));
     }
     IEnumerator FindPathCo(Vector2Int goalPos)
-    { 
+    {
         passableValues = new List<int>();
         passableValues.Add((int)BlockType.Walkable);
 
@@ -57,4 +60,10 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
         FindPath(findPos);
     }
+    void StopCo(Coroutine handle)
+    {
+        if (handle != null)
+            StopCoroutine(handle);
+    }
+
 }
