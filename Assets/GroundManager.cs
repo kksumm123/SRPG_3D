@@ -6,6 +6,7 @@ using UnityEngine;
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
     Transform player;
+    [SerializeField] float moveDelay = 0.3f;
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
     [SerializeField]
@@ -52,7 +53,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
                 player.LookAt(playerNewPos);
                 player.position = playerNewPos;
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(moveDelay);
             }
         }
     }
