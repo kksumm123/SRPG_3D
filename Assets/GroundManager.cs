@@ -55,7 +55,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
                 player.LookAt(playerNewPos);
                 //player.position = playerNewPos;
-                player.DOMove(playerNewPos, moveDelay);
+                player.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(moveDelay);
             }
             Player.selectedPlayer.PlayAnimation("Idle");
