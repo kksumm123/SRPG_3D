@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +8,28 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
     [SerializeField] Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
+
+
     [SerializeField] List<int> passableValues; // TilType을 int로 받기
     //enum TileType
     //{
     //    Walkable, // 갈 수 있는 지역
     //    Wall, // 갈 수 없는 지역
     //}
+    public void OnTouch(Vector3 position)
+    {
+        Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
+        FindPath(findPos);
+    }
 
     public Transform player;
     public Transform goal;
-    [ContextMenu("길찾기 테스트")]
-    void Start()
+    void FindPath(Vector2Int position)
     {
-        StartCoroutine(FindPathCo());
+        StartCoroutine(FindPathCo(position));
     }
 
-    IEnumerator FindPathCo()
+    IEnumerator FindPathCo(Vector2Int position)
     { 
         passableValues = new List<int>();
         passableValues.Add((int)BlockType.Walkable);
@@ -40,10 +47,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         playerPos.x = (int)player.position.x;
         playerPos.y = (int)player.position.z;
 
-        goalPos.x = (int)goal.position.x; 
-        goalPos.y = (int)goal.position.z;
-
-        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
+        var path = PathFinding2D.find4(playerPos, position, map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
         else

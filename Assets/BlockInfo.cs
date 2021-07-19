@@ -12,6 +12,6 @@ public class BlockInfo : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
+        GroundManager.Instance.OnTouch(transform.position);
     }
 }
