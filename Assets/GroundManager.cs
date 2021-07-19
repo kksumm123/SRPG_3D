@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,7 +54,8 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
                 player.LookAt(playerNewPos);
-                player.position = playerNewPos;
+                //player.position = playerNewPos;
+                player.DOMove(playerNewPos, moveDelay);
                 yield return new WaitForSeconds(moveDelay);
             }
             Player.selectedPlayer.PlayAnimation("Idle");
