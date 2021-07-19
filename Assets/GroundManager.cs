@@ -33,7 +33,7 @@ public class GroundManager : MonoBehaviour
         // 맵을 채워넣자
         foreach (var item in blockInfos)
         {
-            var pos = transform.position;
+            var pos = item.transform.position;
             Vector2Int intPos = new Vector2Int((int)pos.x, (int)pos.z);
             map[intPos] = (int)item.blockType;
         }

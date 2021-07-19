@@ -5898,7 +5898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: 9759788f6132dd84da11e946ab72d663, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.95
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: 9759788f6132dd84da11e946ab72d663, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5906,7 +5906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: 9759788f6132dd84da11e946ab72d663, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.14
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: 9759788f6132dd84da11e946ab72d663, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8350,7 +8350,7 @@ MonoBehaviour:
   goalPos: {x: 0, y: 0}
   passableValues: 
   player: {fileID: 1308865589}
-  goal: {fileID: 243166500}
+  goal: {fileID: 1031241807}
 --- !u!1001 &629338683
 PrefabInstance:
   m_ObjectHideFlags: 0
