@@ -24,12 +24,12 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
 
     public Transform player;
     public Transform goal;
-    void FindPath(Vector2Int position)
+    void FindPath(Vector2Int goalPos)
     {
-        StartCoroutine(FindPathCo(position));
+        StartCoroutine(FindPathCo(goalPos));
     }
 
-    IEnumerator FindPathCo(Vector2Int position)
+    IEnumerator FindPathCo(Vector2Int goalPos)
     { 
         passableValues = new List<int>();
         passableValues.Add((int)BlockType.Walkable);
@@ -47,7 +47,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         playerPos.x = (int)player.position.x;
         playerPos.y = (int)player.position.z;
 
-        var path = PathFinding2D.find4(playerPos, position, map, passableValues);
+        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
         else
