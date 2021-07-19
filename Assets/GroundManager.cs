@@ -1,22 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundManager : MonoBehaviour
+public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
-    [SerializeField] Vector2Int playerPos; // ÇÃ·¹ÀÌ¾î À§Ä¡
-    [SerializeField] Vector2Int goalPos;   // Å¬¸¯ÇÑ À§Ä¡ (ÀÌµ¿¸ñÇ¥)
-    [SerializeField] Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>(); // ºí·Ï ¸Ê ÁöÁ¤ÇÏ±â
-    [SerializeField] List<int> passableValues; // TilTypeÀ» int·Î ¹Ş±â
+    [SerializeField] Vector2Int playerPos; // í”Œë ˆì´ì–´ ìœ„ì¹˜
+    [SerializeField] Vector2Int goalPos;   // í´ë¦­í•œ ìœ„ì¹˜ (ì´ë™ëª©í‘œ)
+    [SerializeField] Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>(); // ë¸”ë¡ ë§µ ì§€ì •í•˜ê¸°
+    [SerializeField] List<int> passableValues; // TilTypeì„ intë¡œ ë°›ê¸°
     //enum TileType
     //{
-    //    Walkable, // °¥ ¼ö ÀÖ´Â Áö¿ª
-    //    Wall, // °¥ ¼ö ¾ø´Â Áö¿ª
+    //    Walkable, // ê°ˆ ìˆ˜ ìˆëŠ” ì§€ì—­
+    //    Wall, // ê°ˆ ìˆ˜ ì—†ëŠ” ì§€ì—­
     //}
 
     public Transform player;
     public Transform goal;
-    [ContextMenu("±æÃ£±â Å×½ºÆ®")]
+    [ContextMenu("ê¸¸ì°¾ê¸° í…ŒìŠ¤íŠ¸")]
     void Start()
     {
         StartCoroutine(FindPathCo());
@@ -27,10 +27,10 @@ public class GroundManager : MonoBehaviour
         passableValues = new List<int>();
         passableValues.Add((int)BlockType.Walkable);
 
-        // ÀÚ½ÄÀÇ ¸ğµç BlockInfo Ã£ÀÚ
+        // ìì‹ì˜ ëª¨ë“  BlockInfo ì°¾ì
         var blockInfos = GetComponentsInChildren<BlockInfo>();
 
-        // ¸ÊÀ» Ã¤¿ö³ÖÀÚ
+        // ë§µì„ ì±„ì›Œë„£ì
         foreach (var item in blockInfos)
         {
             var pos = item.transform.position;
@@ -45,7 +45,7 @@ public class GroundManager : MonoBehaviour
 
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
-            Debug.Log("±æ ¾÷µû !");
+            Debug.Log("ê¸¸ ì—…ë”° !");
         else
         {
             foreach (var item in path)
