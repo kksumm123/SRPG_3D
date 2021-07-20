@@ -29,7 +29,7 @@ public class BlockInfo : MonoBehaviour
         if (Vector3.Distance(mouseDownPosition, mouseUpPosition) > clickDistance)
             return;
         // 작으면 캐릭터 이동
-        GroundManager.Instance.OnTouch(transform.position);
+        Player.SelectedPlayer.OnTouch(transform.position);
     }
     string debugTextPrefabString = "DebugTextPrefab";
     GameObject debutTextGos;
