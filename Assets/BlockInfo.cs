@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [Flags]
@@ -29,5 +30,29 @@ public class BlockInfo : MonoBehaviour
             return;
         // 작으면 캐릭터 이동
         GroundManager.Instance.OnTouch(transform.position);
+    }
+    string debugTextPrefabString = "DebugTextPrefab";
+    GameObject debutTextGos;
+
+    public void UpdateDebugInfo()
+    {
+        if(debutTextGos == null)
+        {
+            GameObject textMeshGo = Instantiate((GameObject)Resources.Load(debugTextPrefabString), transform);
+            debutTextGos = textMeshGo;
+            textMeshGo.transform.localPosition = Vector3.zero;
+        }
+
+        StringBuilder debugText = new StringBuilder();
+        ContaingText(debugText, BlockType.Water);
+        ContaingText(debugText, BlockType.Player);
+        ContaingText(debugText, BlockType.Monster);
+
+        GetComponentInChildren<TextMesh>().text = debugText.ToString();
+    }
+    void ContaingText(StringBuilder sb, BlockType walkable)
+    {
+        if (blockType.HasFlag(walkable))
+            sb.AppendLine(walkable.ToString());
     }
 }

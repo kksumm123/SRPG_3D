@@ -14,11 +14,11 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
     public Dictionary<Vector2Int, BlockType> map
         = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기, A*에서 사용
+    public Dictionary<Vector2Int, BlockInfo> blockInfoMap
+        = new Dictionary<Vector2Int, BlockInfo>();
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // 비트연산, int1 | int2 = 3 => 01 | 10 = 11
 
     [SerializeField] bool useDebugMode = true;
-    [SerializeField] string debugTextPrefabString = "DebugTextPrefab";
-    [SerializeField] GameObject debugTextPrefab;
     List<GameObject> debugTexts = new List<GameObject>();
 
     new void Awake()
@@ -38,26 +38,14 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             map[intPos] = item.blockType;
 
             if (useDebugMode)
-            {
-                StringBuilder debugText = new StringBuilder();
-                ContaingText(debugText, item, BlockType.Walkable);
-                ContaingText(debugText, item, BlockType.Water);
-                ContaingText(debugText, item, BlockType.Player);
-                ContaingText(debugText, item, BlockType.Monster);
-
-                GameObject textMeshGo = Instantiate(debugTextPrefab, item.transform);
-                debugTexts.Add(textMeshGo);
-                textMeshGo.transform.localPosition = Vector3.zero;
-                TextMesh textMesh = textMeshGo.GetComponentInChildren<TextMesh>();
-                textMesh.text = debugText.ToString();
-            }
+                item.UpdateDebugInfo();
+            blockInfoMap[intPos] = item;
         }
     }
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        debugTextPrefab = (GameObject)Resources.Load(debugTextPrefabString);
     }
 
     Coroutine findPathCoHandle;
@@ -91,12 +79,6 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         FollowTarget.Instance.SetTarget(null);
     }
 
-    void ContaingText(StringBuilder sb, BlockInfo item, BlockType walkable)
-    {
-        if (item.blockType.HasFlag(walkable))
-            sb.AppendLine(walkable.ToString());
-    }
-
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
     {
         var endTime = Time.time + moveDelay;
@@ -127,7 +109,10 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         if (map.ContainsKey(pos) == false)
             Debug.Log($"{pos} 위치에 맵이 없다.");
 
-        map[pos] = map[pos] | addBlockType;
-
+        //map[pos] = map[pos] | addBlockType;
+        map[pos] |= addBlockType;
+        blockInfoMap[pos].blockType |= addBlockType;
+        if (useDebugMode)
+            blockInfoMap[pos].UpdateDebugInfo();
     }
 }
