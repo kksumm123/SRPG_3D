@@ -15,7 +15,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField]
     Dictionary<Vector2Int, BlockType> map
         = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기
-    [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // TilType을 int로 받기
+    [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // 비트연산, int1 | int2 = 3 => 01 | 10 = 11
 
     [SerializeField] bool useDebugMode = true;
     [SerializeField] string debugTextPrefabString = "DebugTextPrefab";
