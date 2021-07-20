@@ -12,9 +12,9 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
     [SerializeField]
-    Dictionary<Vector2Int, int> map
-        = new Dictionary<Vector2Int, int>(); // 블록 맵 지정하기
-    [SerializeField] List<int> passableValues; // TilType을 int로 받기
+    Dictionary<Vector2Int, BlockType> map
+        = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기
+    [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // TilType을 int로 받기
 
     private void Start()
     {
@@ -29,8 +29,8 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     }
     IEnumerator FindPathCo(Vector2Int goalPos)
     {
-        passableValues = new List<int>();
-        passableValues.Add((int)BlockType.Walkable);
+        //passableValues = new List<int>();
+        //passableValues.Add((int)BlockType.Walkable);
 
         // 자식의 모든 BlockInfo 찾자
         var blockInfos = GetComponentsInChildren<BlockInfo>();
@@ -40,7 +40,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         {
             var pos = item.transform.position;
             Vector2Int intPos = new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
-            map[intPos] = (int)item.blockType;
+            map[intPos] = item.blockType;
         }
         playerPos.x = Mathf.RoundToInt(player.position.x);
         playerPos.y = Mathf.RoundToInt(player.position.z);
