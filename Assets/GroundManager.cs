@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class GroundManager : SingletonMonoBehavior<GroundManager>
@@ -16,9 +17,14 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // TilType을 int로 받기
 
+    [SerializeField] bool useDebugMode = true;
+    [SerializeField] string debugTextPrefabString = "DebugTextPrefab";
+    [SerializeField] GameObject debugTextPrefab;
+    List<GameObject> debugTexts = new List<GameObject>();
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        debugTextPrefab = (GameObject)Resources.Load(debugTextPrefabString);
     }
 
     Coroutine findPathCoHandle;
@@ -35,12 +41,30 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         // 자식의 모든 BlockInfo 찾자
         var blockInfos = GetComponentsInChildren<BlockInfo>();
 
+        debugTexts.ForEach(x => Destroy(x));
+        debugTexts.Clear();
+
         // 맵을 채워넣자
         foreach (var item in blockInfos)
         {
             var pos = item.transform.position;
             Vector2Int intPos = new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
             map[intPos] = item.blockType;
+
+            if (useDebugMode)
+            {
+                StringBuilder debugText = new StringBuilder();
+                ContaingText(debugText, item, BlockType.Walkable);
+                ContaingText(debugText, item, BlockType.Water);
+                ContaingText(debugText, item, BlockType.Player);
+                ContaingText(debugText, item, BlockType.Monster);
+
+                GameObject textMeshGo = Instantiate(debugTextPrefab, item.transform);
+                debugTexts.Add(textMeshGo);
+                textMeshGo.transform.localPosition = Vector3.zero;
+                TextMesh textMesh = textMeshGo.GetComponentInChildren<TextMesh>();
+                textMesh.text = debugText.ToString();
+            }
         }
         playerPos.x = Mathf.RoundToInt(player.position.x);
         playerPos.y = Mathf.RoundToInt(player.position.z);
@@ -62,6 +86,12 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             Player.selectedPlayer.PlayAnimation("Idle");
         }
         FollowTarget.Instance.SetTarget(null);
+    }
+
+    void ContaingText(StringBuilder sb, BlockInfo item, BlockType walkable)
+    {
+        if (item.blockType.HasFlag(walkable))
+            sb.AppendLine(walkable.ToString());
     }
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)

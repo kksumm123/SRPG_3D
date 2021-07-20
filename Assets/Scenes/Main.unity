@@ -6149,6 +6149,9 @@ MonoBehaviour:
   playerPos: {x: 0, y: 0}
   goalPos: {x: 0, y: 0}
   passableValues: 1
+  useDebugMode: 1
+  debugTextPrefabString: DebugTextPrefab
+  debugTextPrefab: {fileID: 0}
 --- !u!1001 &629338683
 PrefabInstance:
   m_ObjectHideFlags: 0
