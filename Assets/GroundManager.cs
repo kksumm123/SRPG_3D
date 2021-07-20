@@ -13,7 +13,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
     public Dictionary<Vector2Int, BlockType> map
-        = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기
+        = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기, A*에서 사용
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // 비트연산, int1 | int2 = 3 => 01 | 10 = 11
 
     [SerializeField] bool useDebugMode = true;
@@ -119,8 +119,15 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             StopCoroutine(handle);
     }
 
-    public void AddBlockInfo(Vector3 position, BlockType monster)
+    public void AddBlockInfo(Vector3 position, BlockType addBlockType)
     {
+        Vector2Int pos =
+            new Vector2Int(Mathf.RoundToInt(position.x)
+                         , Mathf.RoundToInt(position.z));
+        if (map.ContainsKey(pos) == false)
+            Debug.Log($"{pos} 위치에 맵이 없다.");
+
+        map[pos] = map[pos] | addBlockType;
 
     }
 }
