@@ -118,4 +118,9 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         if (handle != null)
             StopCoroutine(handle);
     }
+
+    public void AddBlockInfo(Vector3 position, BlockType monster)
+    {
+
+    }
 }
