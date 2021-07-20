@@ -12,8 +12,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] float moveDelay = 0.3f;
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
-    [SerializeField]
-    Dictionary<Vector2Int, BlockType> map
+    public Dictionary<Vector2Int, BlockType> map
         = new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // 비트연산, int1 | int2 = 3 => 01 | 10 = 11
 
@@ -69,7 +68,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     }
     IEnumerator FindPathCo(Vector2Int goalPos)
     {
-        
+
         playerPos.x = Mathf.RoundToInt(player.position.x);
         playerPos.y = Mathf.RoundToInt(player.position.z);
 
