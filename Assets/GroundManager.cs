@@ -21,23 +21,10 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     [SerializeField] string debugTextPrefabString = "DebugTextPrefab";
     [SerializeField] GameObject debugTextPrefab;
     List<GameObject> debugTexts = new List<GameObject>();
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player").transform;
-        debugTextPrefab = (GameObject)Resources.Load(debugTextPrefabString);
-    }
 
-    Coroutine findPathCoHandle;
-    void FindPath(Vector2Int goalPos)
+    new void Awake()
     {
-        StopCo(findPathCoHandle);
-        findPathCoHandle = StartCoroutine(FindPathCo(goalPos));
-    }
-    IEnumerator FindPathCo(Vector2Int goalPos)
-    {
-        //passableValues = new List<int>();
-        //passableValues.Add((int)BlockType.Walkable);
-
+        base.Awake();
         // 자식의 모든 BlockInfo 찾자
         var blockInfos = GetComponentsInChildren<BlockInfo>();
 
@@ -66,6 +53,23 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 textMesh.text = debugText.ToString();
             }
         }
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        debugTextPrefab = (GameObject)Resources.Load(debugTextPrefabString);
+    }
+
+    Coroutine findPathCoHandle;
+    void FindPath(Vector2Int goalPos)
+    {
+        StopCo(findPathCoHandle);
+        findPathCoHandle = StartCoroutine(FindPathCo(goalPos));
+    }
+    IEnumerator FindPathCo(Vector2Int goalPos)
+    {
+        
         playerPos.x = Mathf.RoundToInt(player.position.x);
         playerPos.y = Mathf.RoundToInt(player.position.z);
 
