@@ -65,8 +65,10 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             Debug.Log("길 업따 !");
         else
         {
-            Player.selectedPlayer.PlayAnimation("Run");
-            FollowTarget.Instance.SetTarget(Player.selectedPlayer.transform);
+            // 원래 위치에서 플레이어 정보 삭제
+            RemoveBlockInfo(Player.SelectedPlayer.transform.position, BlockType.Player);
+            Player.SelectedPlayer.PlayAnimation("Run");
+            FollowTarget.Instance.SetTarget(Player.SelectedPlayer.transform);
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
@@ -74,10 +76,14 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
                 player.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(moveDelay);
             }
-            Player.selectedPlayer.PlayAnimation("Idle");
         }
+        Player.SelectedPlayer.PlayAnimation("Idle");
         FollowTarget.Instance.SetTarget(null);
+        // 이동한 위치에 플레이어 정보 추가 
+        AddBlockInfo(Player.SelectedPlayer.transform.position, BlockType.Player);
     }
+
+    
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
     {
@@ -112,6 +118,20 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         //map[pos] = map[pos] | addBlockType;
         map[pos] |= addBlockType;
         blockInfoMap[pos].blockType |= addBlockType;
+        if (useDebugMode)
+            blockInfoMap[pos].UpdateDebugInfo();
+    }
+    private void RemoveBlockInfo(Vector3 position, BlockType removeBlockType)
+    {
+        Vector2Int pos =
+            new Vector2Int(Mathf.RoundToInt(position.x)
+                         , Mathf.RoundToInt(position.z));
+        if (map.ContainsKey(pos) == false)
+            Debug.Log($"{pos} 위치에 맵이 없다.");
+
+        //map[pos] = map[pos] | addBlockType;
+        map[pos] &= ~removeBlockType;
+        blockInfoMap[pos].blockType &= ~removeBlockType;
         if (useDebugMode)
             blockInfoMap[pos].UpdateDebugInfo();
     }

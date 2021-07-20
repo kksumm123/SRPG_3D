@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player selectedPlayer;
+    public static Player SelectedPlayer;
 
     Animator animator;
     void Start()
     {
-        selectedPlayer = this;
+        SelectedPlayer = this;
         animator = GetComponentInChildren<Animator>();
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player);
     }
