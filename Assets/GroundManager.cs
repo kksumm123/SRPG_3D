@@ -39,11 +39,11 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         foreach (var item in blockInfos)
         {
             var pos = item.transform.position;
-            Vector2Int intPos = new Vector2Int((int)pos.x, (int)pos.z);
+            Vector2Int intPos = new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
             map[intPos] = (int)item.blockType;
         }
-        playerPos.x = (int)player.position.x;
-        playerPos.y = (int)player.position.z;
+        playerPos.x = Mathf.RoundToInt(player.position.x);
+        playerPos.y = Mathf.RoundToInt(player.position.z);
 
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
@@ -77,7 +77,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
 
     public void OnTouch(Vector3 position)
     {
-        Vector2Int findPos = new Vector2Int((int)position.x, (int)position.z);
+        Vector2Int findPos = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
         FindPath(findPos);
     }
     void StopCo(Coroutine handle)
@@ -85,5 +85,4 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         if (handle != null)
             StopCoroutine(handle);
     }
-
 }
