@@ -15,7 +15,7 @@ public class Player : Actor
         SelectedPlayer = this;
         animator = GetComponentInChildren<Animator>();
         player = transform;
-        GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player);
+        GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
     }
     public void PlayAnimation(string stateName)
     {
