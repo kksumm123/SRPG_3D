@@ -20,6 +20,6 @@ public class Monster : Actor
 
     void Start()
     {
-        GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Monster);
+        GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Monster, this);
     }
 }
