@@ -10,11 +10,13 @@ public enum StatusType
 public class Actor : MonoBehaviour
 {
     public string nickName;
-    public float hp;
-    public float maxHP;
-    public float mp;
-    public float maxMP;
+    public float hp = 20;
+    public float maxHP = 20;
+    public float mp = 0;
+    public float maxMP = 0;
     public StatusType status;
+
+    public int moveDistance = 5;
 }
 public class Monster : Actor
 {
