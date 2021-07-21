@@ -11,8 +11,8 @@ public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
     public void Show(Actor actor)
     {
         base.Show();
-        nickName = transform.Find("Status").GetComponent<Text>();
-        status = transform.Find("Status").GetComponent<Text>();
+        nickName = transform.Find("Name").GetComponent<Text>();
+        status = transform.Find("State").GetComponent<Text>();
 
         nickName.text = actor.nickName;
         status.text = actor.status.ToString();
