@@ -3,7 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public static class GroundExtion
+{
 
+}
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
@@ -65,6 +68,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         //map[pos] = map[pos] | addBlockType;
         map[pos] &= ~removeBlockType;
         blockInfoMap[pos].blockType &= ~removeBlockType;
+        blockInfoMap[pos].actor = null;
         if (useDebugMode)
             blockInfoMap[pos].UpdateDebugInfo();
     }

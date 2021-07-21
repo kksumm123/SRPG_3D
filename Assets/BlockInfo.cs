@@ -34,18 +34,35 @@ public class BlockInfo : MonoBehaviour
     {
         // 다운 - 업 거리가 특정 거리보다 크면 리턴
         var mouseUpPosition = Input.mousePosition;
+        // 작으면 캐릭터 이동
         if (Vector3.Distance(mouseDownPosition, mouseUpPosition) > clickDistance)
             return;
-        // 작으면 캐릭터 이동
+        if (actor && actor == Player.SelectedPlayer)
+        { // 클릭한 위치에 actor가 있고, 플레이어가 있다면
+            //영역표시
+            // 첫번째 이동으로 갈 수 있는 곳을 추가
+            ShowMoveDistance(actor.moveDistance);
+        }
         Player.SelectedPlayer.OnTouch(transform.position);
     }
+
+    void ShowMoveDistance(int moveDistance)
+    {
+        var cols = Physics.OverlapSphere(Player.SelectedPlayer.transform.position, actor.moveDistance);
+        foreach (var item in cols)
+        {
+            if (Player.SelectedPlayer.OnMoveable(item.transform.position))
+                item.GetComponent<BlockInfo>()?.ToChangeRedColor();
+        }
+    }
+
     string debugTextPrefabString = "DebugTextPrefab";
     GameObject debutTextGos;
     internal Actor actor;
 
     public void UpdateDebugInfo()
     {
-        if(debutTextGos == null)
+        if (debutTextGos == null)
         {
             GameObject textMeshGo = Instantiate((GameObject)Resources.Load(debugTextPrefabString), transform);
             debutTextGos = textMeshGo;
@@ -65,20 +82,26 @@ public class BlockInfo : MonoBehaviour
             sb.AppendLine(walkable.ToString());
     }
 
-    
+
     private void OnMouseOver()
     {
-        m_Renderer.material.color = m_MouseOverColor;
-        if(actor)
+        ToChangeRedColor();
+        if (actor)
         {
             ActorStateUI.Instance.Show(actor);
         }
     }
+
+    public void ToChangeRedColor()
+    {
+        m_Renderer.material.color = m_MouseOverColor;
+    }
+
     private void OnMouseExit()
     {
         m_Renderer.material.color = m_OriginalColor;
 
-        if(actor)
+        if (actor)
         {
             ActorStateUI.Instance.Close();
         }
