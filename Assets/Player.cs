@@ -55,7 +55,7 @@ public class Player : Actor
         Player.SelectedPlayer.PlayAnimation("Idle");
         FollowTarget.Instance.SetTarget(null);
         // 이동한 위치에 플레이어 정보 추가 
-        GroundManager.Instance.AddBlockInfo(Player.SelectedPlayer.transform.position, BlockType.Player);
+        GroundManager.Instance.AddBlockInfo(Player.SelectedPlayer.transform.position, BlockType.Player, this);
     }
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
