@@ -44,6 +44,7 @@ public class Player : Actor
             GroundManager.Instance.RemoveBlockInfo(Player.SelectedPlayer.transform.position, BlockType.Player);
             Player.SelectedPlayer.PlayAnimation("Run");
             FollowTarget.Instance.SetTarget(Player.SelectedPlayer.transform);
+            path.RemoveAt(0);
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
