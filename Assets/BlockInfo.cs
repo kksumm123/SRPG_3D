@@ -69,9 +69,18 @@ public class BlockInfo : MonoBehaviour
     private void OnMouseOver()
     {
         m_Renderer.material.color = m_MouseOverColor;
+        if(actor)
+        {
+            ActorStateUI.Instance.Show();
+        }
     }
     private void OnMouseExit()
     {
         m_Renderer.material.color = m_OriginalColor;
+
+        if(actor)
+        {
+            ActorStateUI.Instance.Close();
+        }
     }
 }
