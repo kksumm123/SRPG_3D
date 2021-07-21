@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62c44053dda2f544b5123c4ece04f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickName: 
+  hp: 100
+  maxHP: 100
+  mp: 50
+  maxMP: 50
+  status: 0
+  rotatelerpValue: 0.05
+  moveDelay: 0.3
+  passableValues: 3
 --- !u!1001 &8094114717256247075
 PrefabInstance:
   m_ObjectHideFlags: 0

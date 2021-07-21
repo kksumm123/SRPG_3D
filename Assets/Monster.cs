@@ -11,7 +11,9 @@ public class Actor : MonoBehaviour
 {
     public string nickName;
     public float hp;
+    public float maxHP;
     public float mp;
+    public float maxMP;
     public StatusType status;
 }
 public class Monster : Actor
