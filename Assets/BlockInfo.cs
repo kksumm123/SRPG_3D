@@ -48,7 +48,7 @@ public class BlockInfo : MonoBehaviour
 
     void ShowMoveDistance(int moveDistance)
     {
-        var cols = Physics.OverlapSphere(Player.SelectedPlayer.transform.position, actor.moveDistance);
+        var cols = Physics.OverlapSphere(transform.position, actor.moveDistance);
         foreach (var item in cols)
         {
             if (Player.SelectedPlayer.OnMoveable(item.transform.position))

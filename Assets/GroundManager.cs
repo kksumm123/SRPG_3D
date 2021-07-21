@@ -3,9 +3,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public static class GroundExtion
+static public class GroundExtention
 {
-
+    static public Vector2Int ToVector2Int(this Vector3 v3)
+    {
+        return new Vector2Int(Mathf.RoundToInt(v3.x)
+            , Mathf.RoundToInt(v3.x));
+    }
+    static public Vector3 ToVector2Int(this Vector2Int v2Int, int y)
+    {
+        return new Vector3(v2Int.x, y, v2Int.y);
+    }
 }
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
