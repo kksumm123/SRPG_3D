@@ -15,6 +15,14 @@ public enum BlockType
 }
 public class BlockInfo : MonoBehaviour
 {
+    Renderer m_Renderer;
+    Color m_MouseOverColor = Color.red;
+    Color m_OriginalColor;
+    private void Awake()
+    {
+        m_Renderer = GetComponentInChildren<Renderer>();
+        m_OriginalColor = m_Renderer.material.color;
+    }
     public BlockType blockType;
     Vector3 mouseDownPosition;
     public float clickDistance = 1;
@@ -54,5 +62,15 @@ public class BlockInfo : MonoBehaviour
     {
         if (blockType.HasFlag(walkable))
             sb.AppendLine(walkable.ToString());
+    }
+
+    
+    private void OnMouseOver()
+    {
+        m_Renderer.material.color = m_MouseOverColor;
+    }
+    private void OnMouseExit()
+    {
+        m_Renderer.material.color = m_OriginalColor;
     }
 }
