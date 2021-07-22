@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6534093366321135811}
   - component: {fileID: 1662010844}
+  - component: {fileID: 1441670126}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -54,6 +55,18 @@ MonoBehaviour:
   rotatelerpValue: 0.05
   moveDelay: 0.3
   passableValues: 3
+--- !u!114 &1441670126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546894799720371611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4001156e84a09e4bb4e48e2ccab82f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8094114717256247075
 PrefabInstance:
   m_ObjectHideFlags: 0

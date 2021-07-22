@@ -14,6 +14,11 @@ static public class GroundExtention
     {
         return new Vector3(v2Int.x, y, v2Int.y);
     }
+    static public Vector3 ToVector3Snap(this Vector3 v3)
+    {
+        return new Vector3(Mathf.RoundToInt(v3.x), v3.y
+            , Mathf.RoundToInt(v3.z));
+    }
 }
 public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
