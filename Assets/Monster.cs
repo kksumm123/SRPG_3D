@@ -7,8 +7,16 @@ public enum StatusType
     Sleep,
     Die,
 }
+public enum ActorTypeEnum
+{
+    NotInit,
+    Player,
+    Monster,
+}
 public class Actor : MonoBehaviour
 {
+    //오버라이드 해서 상속받은 애들이 각각 리턴값 정하도록
+    public virtual ActorTypeEnum ActorType { get => ActorTypeEnum.NotInit};
     public string nickName;
     public string iconName;
     public float hp = 20;

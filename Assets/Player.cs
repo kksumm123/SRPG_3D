@@ -64,6 +64,15 @@ public class Player : Actor
             StageManager.GameState = GameStateType.SelectPlayer;
     }
 
+    public bool CanAttackTarget(Actor actor)
+    {
+        // 같은 팀이면 공격 X
+        if (actor.)
+            return false;
+
+        return true;
+    }
+
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
     {
