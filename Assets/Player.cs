@@ -56,6 +56,12 @@ public class Player : Actor
         // 이동한 위치에 플레이어 정보 추가 
         GroundManager.Instance
             .AddBlockInfo(transform.position, BlockType.Player, this);
+
+        bool existAttackTarget = ShowAttackableArea();
+        if (existAttackTarget)
+            StageManager.GameState = GameStateType.SelectToAttackTarget;
+        else
+            StageManager.GameState = GameStateType.SelectPlayer;
     }
 
 
@@ -84,8 +90,10 @@ public class Player : Actor
 
         return false;
     }
-    internal void ShowAttackableArea()
+    public bool ShowAttackableArea()
     {
+        bool existEnemy = false;
+
         Vector2Int currentPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.blockInfoMap;
 
@@ -96,9 +104,14 @@ public class Player : Actor
             if (map.ContainsKey(pos))
             {
                 if (IsEnemyExist(map[pos]))
+                {
                     map[pos].ToChangeColor(Color.red);
+                    existEnemy = true;
+                }
             }
         }
+
+        return existEnemy;
     }
 
     private bool IsEnemyExist(BlockInfo blockInfo)
