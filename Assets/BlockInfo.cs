@@ -85,11 +85,8 @@ public class BlockInfo : MonoBehaviour
 
     private void OnMouseOver()
     {
-        ToChangeRedColor();
         if (actor)
-        {
             ActorStateUI.Instance.Show(actor);
-        }
     }
 
     public void ToChangeRedColor()
@@ -99,11 +96,7 @@ public class BlockInfo : MonoBehaviour
 
     private void OnMouseExit()
     {
-        m_Renderer.material.color = m_OriginalColor;
-
         if (actor)
-        {
             ActorStateUI.Instance.Close();
-        }
     }
 }
