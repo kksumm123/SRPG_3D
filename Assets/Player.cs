@@ -61,8 +61,8 @@ public class Player : Actor
 
     internal bool OnMoveable(Vector3 position)
     {
-        Vector2Int goalPos = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
-        Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(player.position.x), Mathf.RoundToInt(player.position.z));
+        Vector2Int goalPos = position.ToVector2Int();
+        Vector2Int playerPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.map;
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
