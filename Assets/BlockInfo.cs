@@ -18,8 +18,7 @@ public class BlockInfo : MonoBehaviour
     public static List<BlockInfo> movableBlocks = new List<BlockInfo>();
 
     Renderer m_Renderer;
-    Color moveableColor = Color.red;
-    Color attackableColor = Color.blue;
+    Color moveableColor = Color.blue;
     Color m_OriginalColor;
     private void Awake()
     {
