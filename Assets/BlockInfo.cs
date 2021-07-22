@@ -41,12 +41,33 @@ public class BlockInfo : MonoBehaviour
         if (Vector3.Distance(mouseDownPosition, mouseUpPosition) > clickDistance)
             return;
 
-        // 이미 빨간 블럭 상태일 때 다시 선택하면 빨간 블럭 원상 복구
-        if (movableBlocks.Count > 0)
+        //if (movableBlocks.Count > 0)
+        //{
+        //    foreach (var item in movableBlocks)
+        //        item.ToChangeOriginColor();
+        //    movableBlocks.Clear();
+        //}
+
+        switch (StageManager.GameState)
         {
-            foreach (var item in movableBlocks)
-                item.ToChangeOriginColor();
-            movableBlocks.Clear();
+            case GameStateType.SelectPlayer:
+                SelectPlayer();
+                break;
+            case GameStateType.SelectBlockOrAttackTarget:
+                SelectBlockOrAttackTarget();
+                break;
+            case GameStateType.SelectToAttackTarget:
+                SelectToAttackTarget();
+                break;
+            case GameStateType.AttackTartget:
+                AttackTartget();
+                break;
+
+            case GameStateType.NotInit:
+            case GameStateType.IngPlayerMove:
+            case GameStateType.MonsterTurn:
+                Debug.Log($"블럭을 클릭할 수 없는 상태 : {StageManager.GameState}");
+                break;
         }
 
         if (actor && actor == Player.SelectedPlayer)
@@ -55,11 +76,42 @@ public class BlockInfo : MonoBehaviour
           // 첫번째 이동으로 갈 수 있는 곳을 추가
             ShowMoveDistance(actor.moveDistance);
         }
-        // 지금 블럭에 몬스터 있으면 때리기
         if (transform.position != Player.SelectedPlayer.transform.position)
             Player.SelectedPlayer.OnTouch(transform.position);
 
     }
+    void SelectPlayer()
+    {
+        if (actor == null)
+            return;
+        if (actor.GetType() == typeof(Player))
+        {
+            //Player.SelectedPlayer = actor as Player;
+            Player.SelectedPlayer = (Player)actor;
+
+            // 이동가능한 영역 표시
+            ShowMoveDistance(Player.SelectedPlayer.moveDistance);
+
+            // 현재 위치에서 공격 가능한 영역 표시
+            //Player.SelectedPlayer.ShowAttackableArea();
+            StageManager.GameState = GameStateType.SelectBlockOrAttackTarget;
+        }
+    }
+    private void SelectBlockOrAttackTarget()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void SelectToAttackTarget()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void AttackTartget()
+    {
+        throw new NotImplementedException();
+    }
+
     void ShowMoveDistance(int moveDistance)
     {
         movableBlocks.Clear();

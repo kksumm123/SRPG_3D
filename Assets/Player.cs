@@ -11,7 +11,7 @@ public class Player : Actor
     [SerializeField] float moveDelay = 0.3f;
     void Start()
     {
-        SelectedPlayer = this;
+        //SelectedPlayer = this;
         animator = GetComponentInChildren<Animator>();
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
         FollowTarget.Instance.SetTarget(transform);
