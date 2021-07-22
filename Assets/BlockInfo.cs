@@ -15,7 +15,7 @@ public enum BlockType
 }
 public class BlockInfo : MonoBehaviour
 {
-    public static List<BlockInfo> movableBlocks = new List<BlockInfo>();
+    public static List<BlockInfo> highlightedMoveableArea = new List<BlockInfo>();
 
     Renderer m_Renderer;
     Color moveableColor = Color.blue;
@@ -40,13 +40,6 @@ public class BlockInfo : MonoBehaviour
         // 작으면 캐릭터 이동
         if (Vector3.Distance(mouseDownPosition, mouseUpPosition) > clickDistance)
             return;
-
-        //if (movableBlocks.Count > 0)
-        //{
-        //    foreach (var item in movableBlocks)
-        //        item.ToChangeOriginColor();
-        //    movableBlocks.Clear();
-        //}
 
         switch (StageManager.GameState)
         {
@@ -77,7 +70,7 @@ public class BlockInfo : MonoBehaviour
             ShowMoveDistance(actor.moveDistance);
         }
         if (transform.position != Player.SelectedPlayer.transform.position)
-            Player.SelectedPlayer.OnTouch(transform.position);
+            Player.SelectedPlayer.MoveToPosition(transform.position);
 
     }
     void SelectPlayer()
@@ -99,6 +92,12 @@ public class BlockInfo : MonoBehaviour
     }
     private void SelectBlockOrAttackTarget()
     {// 공격 대상이 있다면 공격 하자 (Actor == 몬스터 라면
+        if (highlightedMoveableArea.Contains(this))
+        {
+            Player.SelectedPlayer.MoveToPosition(transform.position);
+            ClearMoveableArea();
+            StageManager.GameState = GameStateType.IngPlayerMove;
+        }
     }
 
     private void SelectToAttackTarget()
@@ -111,7 +110,6 @@ public class BlockInfo : MonoBehaviour
 
     void ShowMoveDistance(int moveDistance)
     {
-        movableBlocks.Clear();
         //var blocks = Physics.OverlapSphere(transform.position, actor.moveDistance);
         var rotate = Quaternion.Euler(0, 45, 0);
         Vector3 halfExtents = (moveDistance / Mathf.Sqrt(2)) * 0.99f * Vector3.one;
@@ -124,12 +122,16 @@ public class BlockInfo : MonoBehaviour
                 if (itemBlocks != null)
                 {
                     itemBlocks.ToChangeBlueColor();
-                    movableBlocks.Add(itemBlocks);
+                    highlightedMoveableArea.Add(itemBlocks);
                 }
             }
         }
     }
-
+    void ClearMoveableArea()
+    {
+        highlightedMoveableArea.ForEach(x => x.ToChangeOriginColor());
+        highlightedMoveableArea.Clear();
+    }
     string debugTextPrefabString = "DebugTextPrefab";
     GameObject debutTextGos;
     internal Actor actor;

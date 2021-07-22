@@ -110,7 +110,7 @@ public class Player : Actor
         return true;
     }
 
-    public void OnTouch(Vector3 position)
+    public void MoveToPosition(Vector3 position)
     {
         Vector2Int findPos = position.ToVector2Int();
         FindPath(findPos);
