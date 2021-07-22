@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : Actor
 {
+    public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
     public static Player SelectedPlayer;
     Animator animator;
     [SerializeField] float rotatelerpValue = 0.05f;
@@ -67,12 +68,20 @@ public class Player : Actor
     public bool CanAttackTarget(Actor actor)
     {
         // 같은 팀이면 공격 X
-        if (actor.)
+        if (actor.ActorType != ActorTypeEnum.Monster)
             return false;
 
         return true;
     }
+    public void AttackToTarget(Actor actor)
+    {
+        StartCoroutine(AttackToTargetCo());
+    }
 
+    private IEnumerator AttackToTargetCo()
+    {
+
+    }
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
     {

@@ -19,6 +19,7 @@ public class Actor : MonoBehaviour
     public virtual ActorTypeEnum ActorType { get => ActorTypeEnum.NotInit; }
     public string nickName;
     public string iconName;
+    public int power;
     public float hp = 20;
     public float maxHP = 20;
     public float mp = 0;
@@ -52,13 +53,27 @@ public class Actor : MonoBehaviour
         // 다시 앞을 보도록 
         transform.Rotate(0, 90, 0);
     }
+
+    public virtual void TakeHit(int power)
+    {
+        //맞은 데미지 표시
+        hp -= power;
+    }
 }
 public class Monster : Actor
 {
     Animator animator;
+    public override ActorTypeEnum ActorType { get => ActorTypeEnum.Monster; }
 
     void Start()
     {
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Monster, this);
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    public override void TakeHit(int power)
+    {
+        hp -= power;
+        animator.Play("TakeHit");
     }
 }
