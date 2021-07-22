@@ -55,7 +55,7 @@ public class BlockInfo : MonoBehaviour
         foreach (var item in blocks)
         {
             if (Player.SelectedPlayer.OnMoveable(item.transform.position, moveDistance))
-                item.GetComponent<BlockInfo>().ToChangeRedColor();
+                item.GetComponent<BlockInfo>()?.ToChangeRedColor();
         }
     }
 

@@ -66,7 +66,7 @@ public class Player : Actor
         var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
-        else if (path.Count > maxDistance)
+        else if (path.Count > maxDistance + 1)
             Debug.Log("이동모태 !");
         else
             return true;
