@@ -6,6 +6,6 @@ public class AttackPoint : MonoBehaviour
 {
     void Start()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
