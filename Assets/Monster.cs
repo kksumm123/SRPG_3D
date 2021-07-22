@@ -23,12 +23,26 @@ public class Actor : MonoBehaviour
     public List<Vector2Int> attackablePoints = new List<Vector2Int>();
     private void Awake()
     {
-        var attackPoints = GetComponents<AttackPoint>();
+        var attackPoints = GetComponentsInChildren<AttackPoint>(true);
 
+        // 앞쪽 공격 포인트
         foreach (var item in attackPoints)
             attackablePoints.Add(item.transform.localPosition.ToVector2Int());
 
-        // 
+        // 오른쪽 공격 포인트
+        transform.Rotate(0, 90, 0);
+        foreach (var item in attackPoints)
+            attackablePoints.Add((item.transform.localPosition - transform.position).ToVector2Int());
+        // 뒤 공격 포인트
+        transform.Rotate(0, 90, 0);
+        foreach (var item in attackPoints)
+            attackablePoints.Add((item.transform.localPosition - transform.position).ToVector2Int());
+        // 왼쪽 공격 포인트
+        transform.Rotate(0, 90, 0);
+        foreach (var item in attackPoints)
+            attackablePoints.Add((item.transform.localPosition - transform.position).ToVector2Int());
+        // 다시 앞을 보도록 
+        transform.Rotate(0, 90, 0);
     }
 }
 public class Monster : Actor
