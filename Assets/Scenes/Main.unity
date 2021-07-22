@@ -40668,6 +40668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActorStateUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1955770808218088070, guid: e1662a8a239046a4e96c22c400b07c84, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1955770808218088071, guid: e1662a8a239046a4e96c22c400b07c84, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -89213,7 +89217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534093366321135811, guid: 631f013cdc5077141a0b448c66ec4fe6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 6534093366321135811, guid: 631f013cdc5077141a0b448c66ec4fe6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -89221,7 +89225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534093366321135811, guid: 631f013cdc5077141a0b448c66ec4fe6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 6534093366321135811, guid: 631f013cdc5077141a0b448c66ec4fe6, type: 3}
       propertyPath: m_LocalRotation.w

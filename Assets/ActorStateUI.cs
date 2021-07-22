@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
 {
     Text nickName;
+    Image icon;
     Text status;
     RectTransform hpBarGauge;
     RectTransform hpBar;
@@ -19,6 +20,7 @@ public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
     {
         base.Show();
         nickName = transform.Find("Name").GetComponent<Text>();
+        icon = transform.Find("Icon").GetComponent<Image>();
         status = transform.Find("State").GetComponent<Text>();
 
         hpBarGauge = transform.Find("HPBar/Gauge").GetComponent<RectTransform>();
@@ -42,6 +44,7 @@ public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
         mpBarGaugeImage.fillAmount = actor.mp / actor.maxMP;
 
         nickName.text = actor.nickName;
+        icon.sprite = Resources.Load<Sprite>($"Icon/{actor.iconName}");
         status.text = actor.status.ToString();
     }
 }
