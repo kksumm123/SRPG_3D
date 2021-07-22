@@ -18,7 +18,8 @@ public class BlockInfo : MonoBehaviour
     public static List<BlockInfo> movableBlocks = new List<BlockInfo>();
 
     Renderer m_Renderer;
-    Color m_MouseOverColor = Color.red;
+    Color moveableColor = Color.red;
+    Color attackableColor = Color.blue;
     Color m_OriginalColor;
     private void Awake()
     {
@@ -99,17 +100,14 @@ public class BlockInfo : MonoBehaviour
     }
     private void SelectBlockOrAttackTarget()
     {
-        throw new NotImplementedException();
     }
 
     private void SelectToAttackTarget()
     {
-        throw new NotImplementedException();
     }
 
     private void AttackTartget()
     {
-        throw new NotImplementedException();
     }
 
     void ShowMoveDistance(int moveDistance)
@@ -126,7 +124,7 @@ public class BlockInfo : MonoBehaviour
                 var itemBlocks = item.GetComponent<BlockInfo>();
                 if (itemBlocks != null)
                 {
-                    itemBlocks.ToChangeRedColor();
+                    itemBlocks.ToChangeBlueColor();
                     movableBlocks.Add(itemBlocks);
                 }
             }
@@ -166,15 +164,19 @@ public class BlockInfo : MonoBehaviour
             ActorStateUI.Instance.Show(actor);
     }
 
-    public void ToChangeRedColor()
+    internal void ToChangeColor(Color color)
     {
-        m_Renderer.material.color = m_MouseOverColor;
+        m_Renderer.material.color = color;
+    }
+    public void ToChangeBlueColor()
+    {
+        m_Renderer.material.color = moveableColor;
     }
     void ToChangeOriginColor()
     {
         m_Renderer.material.color = m_OriginalColor;
     }
-
+        
     private void OnMouseExit()
     {
         if (actor)

@@ -96,7 +96,7 @@ public class Player : Actor
             if (map.ContainsKey(pos))
             {
                 if (IsEnemyExist(map[pos]))
-                    map[pos].ToChangeRedColor();
+                    map[pos].ToChangeColor(Color.red);
             }
         }
     }
