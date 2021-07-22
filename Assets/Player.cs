@@ -58,6 +58,17 @@ public class Player : Actor
             .AddBlockInfo(transform.position, BlockType.Player, this);
     }
 
+
+    IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
+    {
+        var endTime = Time.time + moveDelay;
+        while (endTime > Time.time)
+        {
+            transform.forward = Vector3.Slerp(transform.forward
+                    , (playerNewPos - transform.position).normalized, rotatelerpValue);
+            yield return null;
+        }
+    }
     internal bool OnMoveable(Vector3 position, int maxDistance)
     {
         Vector2Int goalPos = position.ToVector2Int();
@@ -73,16 +84,30 @@ public class Player : Actor
 
         return false;
     }
-
-    IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
+    internal void ShowAttackableArea()
     {
-        var endTime = Time.time + moveDelay;
-        while (endTime > Time.time)
+        Vector2Int currentPos = transform.position.ToVector2Int();
+        var map = GroundManager.Instance.blockInfoMap;
+
+        foreach (var item in attackablePoints)
         {
-            transform.forward = Vector3.Slerp(transform.forward
-                    , (playerNewPos - transform.position).normalized, rotatelerpValue);
-            yield return null;
+            Vector2Int pos = item + currentPos; //아이템의 월드 지역 위치
+            // item 블록 위에 적이 있는지
+            if (map.ContainsKey(pos))
+            {
+                if (IsEnemyExist(map[pos]))
+                    map[pos].ToChangeRedColor();
+            }
         }
+    }
+
+    private bool IsEnemyExist(BlockInfo blockInfo)
+    {
+        if (blockInfo.blockType.HasFlag(BlockType.Monster) == false)
+            return false;
+        Debug.Assert(blockInfo.actor != null, "블록의 액터는 있어야 해");
+
+        return true;
     }
 
     public void OnTouch(Vector3 position)

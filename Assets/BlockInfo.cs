@@ -93,7 +93,7 @@ public class BlockInfo : MonoBehaviour
             ShowMoveDistance(Player.SelectedPlayer.moveDistance);
 
             // 현재 위치에서 공격 가능한 영역 표시
-            //Player.SelectedPlayer.ShowAttackableArea();
+            Player.SelectedPlayer.ShowAttackableArea();
             StageManager.GameState = GameStateType.SelectBlockOrAttackTarget;
         }
     }
