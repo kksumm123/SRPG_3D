@@ -58,7 +58,7 @@ public class Player : Actor
             .AddBlockInfo(transform.position, BlockType.Player, this);
     }
 
-    internal bool OnMoveable(Vector3 position)
+    internal bool OnMoveable(Vector3 position, int maxDistance)
     {
         Vector2Int goalPos = position.ToVector2Int();
         Vector2Int playerPos = transform.position.ToVector2Int();
@@ -66,7 +66,7 @@ public class Player : Actor
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
-        else if (path.Count > 5)
+        else if (path.Count > maxDistance)
             Debug.Log("이동모태 !");
         else
             return true;

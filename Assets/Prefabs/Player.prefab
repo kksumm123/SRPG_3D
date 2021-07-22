@@ -50,6 +50,7 @@ MonoBehaviour:
   mp: 50
   maxMP: 50
   status: 0
+  moveDistance: 5
   rotatelerpValue: 0.05
   moveDelay: 0.3
   passableValues: 3
