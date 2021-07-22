@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62c44053dda2f544b5123c4ece04f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickName: 
+  nickName: "\uB098\uB294\uC57C\uC9F1\uC9F1\uB9E8"
+  iconName: Player
   hp: 100
   maxHP: 100
   mp: 50

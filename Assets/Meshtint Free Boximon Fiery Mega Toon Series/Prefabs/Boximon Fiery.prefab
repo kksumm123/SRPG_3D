@@ -1129,12 +1129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016821ddeeef1a44dad1d27c4b3c2de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickName: 
+  nickName: "\uBAAC\uC265\uAE34\uBAAC\uC2A4\uD0C0"
+  iconName: Monster
   hp: 20
   maxHP: 20
   mp: 0
   maxMP: 0
   status: 0
+  moveDistance: 5
 --- !u!1 &1992369794795074
 GameObject:
   m_ObjectHideFlags: 0
