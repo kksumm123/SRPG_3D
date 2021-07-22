@@ -75,12 +75,16 @@ public class Player : Actor
     }
     public void AttackToTarget(Actor actor)
     {
-        StartCoroutine(AttackToTargetCo());
+        StartCoroutine(AttackToTargetCo(actor));
     }
 
-    private IEnumerator AttackToTargetCo()
+    public float attackTime = 1;
+    private IEnumerator AttackToTargetCo(Actor actor)
     {
-
+        animator.Play("Attack");
+        actor.TakeHit(power);
+        yield return new WaitForSeconds(attackTime);
+        StageManager.GameState = GameStateType.SelectPlayer;
     }
 
     IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)

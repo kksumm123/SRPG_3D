@@ -92,11 +92,19 @@ public class BlockInfo : MonoBehaviour
     }
     private void SelectBlockOrAttackTarget()
     {// 공격 대상이 있다면 공격 하자 (Actor == 몬스터 라면
-        if (highlightedMoveableArea.Contains(this))
+        if (actor)
         {
-            Player.SelectedPlayer.MoveToPosition(transform.position);
-            ClearMoveableArea();
-            StageManager.GameState = GameStateType.IngPlayerMove;
+            if (Player.SelectedPlayer.CanAttackTarget(actor))
+                Player.SelectedPlayer.AttackToTarget(actor);
+        }
+        else
+        {
+            if (highlightedMoveableArea.Contains(this))
+            {
+                Player.SelectedPlayer.MoveToPosition(transform.position);
+                ClearMoveableArea();
+                StageManager.GameState = GameStateType.IngPlayerMove;
+            }
         }
     }
 
@@ -177,7 +185,7 @@ public class BlockInfo : MonoBehaviour
     {
         m_Renderer.material.color = m_OriginalColor;
     }
-        
+
     private void OnMouseExit()
     {
         if (actor)
