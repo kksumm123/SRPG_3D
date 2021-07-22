@@ -31,8 +31,8 @@ public class Player : Actor
     IEnumerator FindPathCo(Vector2Int goalPos)
     {
         Vector2Int playerPos = transform.position.ToVector2Int();
-        var map = GroundManager.Instance.map;
-        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
+        var map = GroundManager.Instance.blockInfoMap;
+        var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
         else
@@ -62,8 +62,8 @@ public class Player : Actor
     {
         Vector2Int goalPos = position.ToVector2Int();
         Vector2Int playerPos = transform.position.ToVector2Int();
-        var map = GroundManager.Instance.map;
-        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
+        var map = GroundManager.Instance.blockInfoMap;
+        var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
         else if (path.Count > maxDistance)
