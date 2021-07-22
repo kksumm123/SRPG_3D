@@ -41,7 +41,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         foreach (var item in blockInfos)
         {
             var pos = item.transform.position;
-            Vector2Int intPos = new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
+            Vector2Int intPos = pos.ToVector2Int();
             map[intPos] = item.blockType;
 
             if (useDebugMode)
@@ -52,9 +52,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
 
     public void AddBlockInfo(Vector3 position, BlockType addBlockType, Actor actor)
     {
-        Vector2Int pos =
-            new Vector2Int(Mathf.RoundToInt(position.x)
-                         , Mathf.RoundToInt(position.z));
+        Vector2Int pos = position.ToVector2Int();
         if (map.ContainsKey(pos) == false)
             Debug.Log($"{pos} 위치에 맵이 없다.");
 
@@ -67,9 +65,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
     }
     public void RemoveBlockInfo(Vector3 position, BlockType removeBlockType)
     {
-        Vector2Int pos =
-            new Vector2Int(Mathf.RoundToInt(position.x)
-                         , Mathf.RoundToInt(position.z));
+        Vector2Int pos = position.ToVector2Int();
         if (map.ContainsKey(pos) == false)
             Debug.Log($"{pos} 위치에 맵이 없다.");
 

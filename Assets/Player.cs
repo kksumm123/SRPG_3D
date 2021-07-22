@@ -31,9 +31,7 @@ public class Player : Actor
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water;
     IEnumerator FindPathCo(Vector2Int goalPos)
     {
-        Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(player.position.x), Mathf.RoundToInt(player.position.z));
-        playerPos.x = Mathf.RoundToInt(player.position.x);
-        playerPos.y = Mathf.RoundToInt(player.position.z);
+        Vector2Int playerPos = player.position.ToVector2Int();
         var map = GroundManager.Instance.map;
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
@@ -67,7 +65,7 @@ public class Player : Actor
         var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
-        else if(path.Count > 5)
+        else if (path.Count > 5)
             Debug.Log("이동모태 !");
         else
             return true;
@@ -88,7 +86,7 @@ public class Player : Actor
 
     public void OnTouch(Vector3 position)
     {
-        Vector2Int findPos = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
+        Vector2Int findPos = position.ToVector2Int();
         FindPath(findPos);
     }
     void StopCo(Coroutine handle)
