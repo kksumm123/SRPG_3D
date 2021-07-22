@@ -48,8 +48,8 @@ public class BlockInfo : MonoBehaviour
 
     void ShowMoveDistance(int moveDistance)
     {
-        var cols = Physics.OverlapSphere(transform.position, actor.moveDistance);
-        foreach (var item in cols)
+        var blocks = Physics.OverlapSphere(transform.position, actor.moveDistance);
+        foreach (var item in blocks)
         {
             if (Player.SelectedPlayer.OnMoveable(item.transform.position))
                 item.GetComponent<BlockInfo>()?.ToChangeRedColor();
