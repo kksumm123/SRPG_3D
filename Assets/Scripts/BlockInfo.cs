@@ -95,9 +95,7 @@ public class BlockInfo : MonoBehaviour
 
             // 현재 위치에서 공격 가능한 영역 표시
             if (player.completeAct == false)
-            {
                 Player.SelectedPlayer.ShowAttackableArea();
-            }
 
             StageManager.GameState = GameStateType.SelectBlockOrAttackTarget;
         }
