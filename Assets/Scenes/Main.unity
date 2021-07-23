@@ -89190,6 +89190,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4630504671612013348, guid: ae46b7b8446195745ac97bf7eb347796, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0b63f1cfe110994ba2ad2de0e5292de, type: 3}
+    - target: {fileID: 4630504671612013348, guid: ae46b7b8446195745ac97bf7eb347796, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630504671612013348, guid: ae46b7b8446195745ac97bf7eb347796, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7122642
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630504671612013348, guid: ae46b7b8446195745ac97bf7eb347796, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9950492
+      objectReference: {fileID: 0}
     - target: {fileID: 4630504671612013370, guid: ae46b7b8446195745ac97bf7eb347796, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
