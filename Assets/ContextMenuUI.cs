@@ -28,12 +28,15 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
         baseItem.SetActive(false);
     }
 
-    internal void ShoStageMenu(Vector3 pos)
+    internal void ShoStageMenu(Vector3 uiPosition)
     {
         base.Show();
-        var rectTr = GetComponent<RectTransform>();
-        rectTr.anchoredPosition = pos;
-    
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            transform.parent.GetComponent<RectTransform>()
+            , uiPosition, null, out Vector2 localPoint);
+
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.anchoredPosition = localPoint;
     }
 
     private void EndTurnPlayer()
