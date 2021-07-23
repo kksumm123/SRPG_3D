@@ -27,7 +27,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F10))
-            ContextMenuUI.Instance.ShoStageMenu();
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            ContextMenuUI.Instance. ShoStageMenu(Input.mousePosition);
     }
 }
