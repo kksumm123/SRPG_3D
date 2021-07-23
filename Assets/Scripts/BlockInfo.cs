@@ -100,6 +100,7 @@ public class BlockInfo : MonoBehaviour
         {
             if (highlightedMoveableArea.Contains(this))
             {
+                Player.SelectedPlayer.ClearEnemyExistPoint();
                 Player.SelectedPlayer.MoveToPosition(transform.position);
                 ClearMoveableArea();
                 StageManager.GameState = GameStateType.IngPlayerMove;
@@ -107,6 +108,8 @@ public class BlockInfo : MonoBehaviour
         }
     }
 
+    // 이동후에 공격할 타겟일 수 있는 블럭 선택
+    // 블럭에 공격할 타겟이 있고 공격 가능한 타겟이면 공격
     private void SelectToAttackTarget()
     {
         if (Player.SelectedPlayer.enemyExistPoint.Contains(this))
@@ -189,7 +192,7 @@ public class BlockInfo : MonoBehaviour
     {
         m_Renderer.material.color = moveableColor;
     }
-    void ToChangeOriginColor()
+    public void ToChangeOriginColor()
     {
         m_Renderer.material.color = m_OriginalColor;
     }

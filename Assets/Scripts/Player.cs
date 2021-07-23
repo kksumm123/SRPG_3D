@@ -115,6 +115,12 @@ public class Player : Actor
 
         return false;
     }
+
+    public void ClearEnemyExistPoint()
+    {
+        enemyExistPoint.ForEach(x => x.ToChangeOriginColor());
+        enemyExistPoint.Clear();
+    }
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
     public bool ShowAttackableArea()
     {
