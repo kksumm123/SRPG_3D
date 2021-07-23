@@ -238,13 +238,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058727498803935535}
+  - component: {fileID: 1721459562685719079}
   m_Layer: 5
   m_Name: 'NotifyUI '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9058727498803935535
 RectTransform:
   m_ObjectHideFlags: 0
@@ -267,3 +268,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1721459562685719079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058727498803935534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81bd11bcbebb694398691d6db1cac0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
