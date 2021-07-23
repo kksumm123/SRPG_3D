@@ -51,6 +51,7 @@ public class Player : Actor
                 transform.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(moveDelay);
             }
+            completeMove = true;
         }
         Player.SelectedPlayer.PlayAnimation("Idle");
         FollowTarget.Instance.SetTarget(null);
@@ -87,6 +88,8 @@ public class Player : Actor
         animator.Play("Attack");
         attackTarget.TakeHit(power);
         yield return new WaitForSeconds(attackTime);
+
+        completeAct = true;
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
@@ -106,14 +109,10 @@ public class Player : Actor
         Vector2Int playerPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.blockInfoMap;
         var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
-        if (path.Count == 0)
-            Debug.Log("길 업따 !");
-        else if (path.Count > maxDistance + 1)
-            Debug.Log("이동모태 !");
-        else
-            return true;
+        if (path.Count == 0 || path.Count > maxDistance + 1)
+            return false;
 
-        return false;
+        return true;
     }
 
     public void ClearEnemyExistPoint()
