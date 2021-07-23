@@ -17,7 +17,7 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
 
         menus.Add("턴 종료 (F10)", EndTurnPlayer);
         menus.Add("테스트 메뉴", TestMenu);
-        menus.Add("무명 함수 테스트", () => Debug.Log("무명함수"));
+        menus.Add("무명 함수 테스트", () => Debug.Log("무명함수")); OnClick(); ;
 
         foreach (var item in menus)
         {
@@ -43,12 +43,17 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
 
     private void EndTurnPlayer()
     {
-        throw new NotImplementedException();
+        OnClick();
     }
 
 
     private void TestMenu()
     {
-        throw new NotImplementedException();
+        OnClick();
+    }
+
+    void OnClick()
+    {
+        Close();
     }
 }
