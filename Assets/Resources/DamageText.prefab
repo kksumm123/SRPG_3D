@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3543012198092324493}
   - component: {fileID: 4995342113460601293}
   - component: {fileID: 7360717468548042525}
+  - component: {fileID: -1062943669996147363}
   m_Layer: 0
   m_Name: DamageText
   m_TagString: Untagged
@@ -170,3 +171,22 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!95 &-1062943669996147363
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250267143681428862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1a315b14144147498e8c5ce5dfb3499, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
