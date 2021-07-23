@@ -28,7 +28,6 @@ public class BlockInfo : MonoBehaviour
     public BlockType blockType;
     Vector3 mouseDownPosition;
     public float clickDistance = 1;
-    bool isChangedColor = false;
     private void OnMouseDown()
     {
         mouseDownPosition = Input.mousePosition;
@@ -110,6 +109,7 @@ public class BlockInfo : MonoBehaviour
 
     private void SelectToAttackTarget()
     {
+        if (Player.SelectedPlayer)
     }
 
     private void AttackTartget()
