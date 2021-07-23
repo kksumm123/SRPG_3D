@@ -14,11 +14,18 @@ public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
     RectTransform mpBar;
     Image hpBarGaugeImage;
     Image mpBarGaugeImage;
-
+    protected override void OnInit()
+    {
+        Debug.Log($"1" + transform.position);
+        base.OnInit();
+        Debug.Log($"2" + transform.position);
+    }
 
     public void Show(Actor actor)
     {
+        Debug.Log($"3" + transform.position);
         base.Show();
+        Debug.Log($"4" + transform.position);
         nickName = transform.Find("Name").GetComponent<Text>();
         icon = transform.Find("Icon").GetComponent<Image>();
         status = transform.Find("State").GetComponent<Text>();
