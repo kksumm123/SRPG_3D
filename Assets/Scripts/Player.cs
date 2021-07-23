@@ -115,11 +115,9 @@ public class Player : Actor
 
         return false;
     }
-    List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
+    public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
     public bool ShowAttackableArea()
     {
-        bool existEnemy = false;
-
         Vector2Int currentPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.blockInfoMap;
 
@@ -136,10 +134,8 @@ public class Player : Actor
             }
         }
 
-        //map[pos].ToChangeColor(Color.red);
         enemyExistPoint.ForEach(x => x.ToChangeColor(Color.red));
-        //existEnemy = true;
-        return existEnemy;
+        return enemyExistPoint.Count > 0;
     }
 
     private bool IsEnemyExist(BlockInfo blockInfo)
