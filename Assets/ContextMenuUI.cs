@@ -28,11 +28,17 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
         baseItem.SetActive(false);
     }
 
+    internal void ShoStageMenu()
+    {
+        base.Show();
+    }
 
     private void EndTurnPlayer()
     {
         throw new NotImplementedException();
     }
+
+
     private void TestMenu()
     {
         throw new NotImplementedException();
