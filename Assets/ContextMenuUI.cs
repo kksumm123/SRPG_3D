@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContextMenuUI : MonoBehaviour
+public class ContextMenuUI : BaseUI<ContextMenuUI>
 {
     
 }
