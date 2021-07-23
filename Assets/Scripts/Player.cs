@@ -79,21 +79,24 @@ public class Player : Actor
     }
 
     public float attackTime = 1;
-    private IEnumerator AttackToTargetCo(Actor actor)
+    private IEnumerator AttackToTargetCo(Actor attackTarget)
     {
+        // 타겟 방향 보기
+        transform.LookAt(attackTarget.transform);
+
         animator.Play("Attack");
-        actor.TakeHit(power);
+        attackTarget.TakeHit(power);
         yield return new WaitForSeconds(attackTime);
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    IEnumerator PlayerLookAtLerp(Vector3 playerNewPos)
+    IEnumerator PlayerLookAtLerp(Vector3 targetPos)
     {
         var endTime = Time.time + moveDelay;
         while (endTime > Time.time)
         {
             transform.forward = Vector3.Slerp(transform.forward
-                    , (playerNewPos - transform.position).normalized, rotatelerpValue);
+                    , (targetPos - transform.position).normalized, rotatelerpValue);
             yield return null;
         }
     }

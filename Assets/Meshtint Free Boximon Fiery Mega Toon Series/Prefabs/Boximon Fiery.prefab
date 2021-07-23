@@ -1063,8 +1063,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4744222756475520}
   - component: {fileID: 95206688057043068}
-  - component: {fileID: 843926672}
-  - component: {fileID: 627718617193659367}
   m_Layer: 0
   m_Name: Boximon Fiery
   m_TagString: Untagged
@@ -1118,38 +1116,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &843926672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975194375736644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016821ddeeef1a44dad1d27c4b3c2de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nickName: "\uBAAC\uC265\uAE34\uBAAC\uC2A4\uD0C0"
-  iconName: Monster
-  hp: 20
-  maxHP: 20
-  mp: 0
-  maxMP: 0
-  status: 0
-  moveDistance: 5
---- !u!114 &627718617193659367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975194375736644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4001156e84a09e4bb4e48e2ccab82f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1992369794795074
 GameObject:
   m_ObjectHideFlags: 0
