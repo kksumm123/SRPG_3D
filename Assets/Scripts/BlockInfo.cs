@@ -94,7 +94,10 @@ public class BlockInfo : MonoBehaviour
         if (actor)
         {
             if (Player.SelectedPlayer.CanAttackTarget(actor))
+            {
+                ClearMoveableArea();
                 Player.SelectedPlayer.AttackToTarget(actor);
+            }
         }
         else
         {

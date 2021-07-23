@@ -20,6 +20,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
         get => Instance.gameState;
         set
         {
+            Debug.Log($"{Instance.gameState} -> {value}");
             NotifyUI.Instance.Show(value.ToString(), 10);
             Instance.gameState = value;
         }

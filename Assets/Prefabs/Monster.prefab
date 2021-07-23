@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906654418475597910}
-  m_LocalRotation: {x: -0.00000003090862, y: 0.7071068, z: -0.7071068, w: -0.00000003090862}
-  m_LocalPosition: {x: -1, y: 0.01, z: 0}
+  m_LocalRotation: {x: -0.000000030908623, y: 0.7071068, z: -0.7071068, w: -0.000000030908623}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5392808205677756734}
@@ -136,6 +136,8 @@ MonoBehaviour:
   maxMP: 0
   status: 0
   moveDistance: 5
+  completeMove: 0
+  completeAct: 0
   attackablePoints: []
 --- !u!114 &472951347185803301
 MonoBehaviour:

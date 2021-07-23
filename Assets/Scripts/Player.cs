@@ -77,6 +77,7 @@ public class Player : Actor
     public void AttackToTarget(Actor actor)
     {
         StartCoroutine(AttackToTargetCo(actor));
+        ClearEnemyExistPoint();
     }
 
     public float attackTime = 1;
