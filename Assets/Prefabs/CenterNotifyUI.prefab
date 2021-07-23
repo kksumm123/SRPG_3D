@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2827799696117396226}
   - component: {fileID: 3828846910546629004}
+  - component: {fileID: 9058727499449622484}
   m_Layer: 5
   m_Name: CenterNotifyUI
   m_TagString: Untagged
@@ -205,6 +206,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1aeec3ea01fc1d49a1fb9398d9a2f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
+--- !u!225 &9058727499449622484
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2827799696117396227}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6523829636726552595
 GameObject:
   m_ObjectHideFlags: 0
