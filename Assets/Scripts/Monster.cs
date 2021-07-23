@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public enum StatusType
 {
@@ -77,7 +78,8 @@ public class Monster : Actor
         GameObject damageTextGo = (GameObject)Instantiate(Resources.Load("DamageText"), transform);
         // 데미지 오브젝트를 적당한 위치로 수정
         damageTextGo.transform.position = new Vector3(0, 2, 0);
-
+        damageTextGo.GetComponent<TextMeshPro>().text = power.ToString();
+        Destroy(damageTextGo, 2);
 
         hp -= power;
         animator.Play("TakeHit");
