@@ -89168,11 +89168,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4562075604489022, guid: 1b8fbee291cdc1046a281cb2b3b51bf7, type: 3}
   m_PrefabInstance: {fileID: 2146746603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1721459562685719076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9058727498803935534, guid: bd142601c0aff8943a513461938809fc, type: 3}
+  m_PrefabInstance: {fileID: 7661971999183444746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1721459562685719077 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9058727498803935535, guid: bd142601c0aff8943a513461938809fc, type: 3}
   m_PrefabInstance: {fileID: 7661971999183444746}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1721459562685719078
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721459562685719076}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &5392808207267326885
 PrefabInstance:
   m_ObjectHideFlags: 0

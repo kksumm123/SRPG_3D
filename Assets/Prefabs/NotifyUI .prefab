@@ -239,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9058727498803935535}
   - component: {fileID: 1721459562685719079}
+  - component: {fileID: 1721459562685719078}
   m_Layer: 5
   m_Name: 'NotifyUI '
   m_TagString: Untagged
@@ -280,3 +281,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81bd11bcbebb694398691d6db1cac0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
+--- !u!225 &1721459562685719078
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058727498803935534}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

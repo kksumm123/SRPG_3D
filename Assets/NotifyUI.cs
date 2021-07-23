@@ -1,18 +1,26 @@
+﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NotifyUI : MonoBehaviour
+public class NotifyUI : SingletonMonoBehavior<NotifyUI>
 {
-    // Start is called before the first frame update
-    void Start()
+    Text contentText;
+    CanvasGroup canvasGroup;
+    protected override void OnInit()
     {
-        
+        base.OnInit();
+        canvasGroup = GetComponent<CanvasGroup>();
+        contentText = transform.Find("ContentText").GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Show(string text, float visibleTime = 3f)
     {
-        
+        base.Show();
+        canvasGroup.alpha = 1;
+        contentText.text = text;
+
+        canvasGroup.DOFade(0, 1).SetDelay(visibleTime).OnComplete(Close);
     }
 }
