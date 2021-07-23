@@ -77,7 +77,8 @@ public class Monster : Actor
         //맞은 데미지를 표시하자
         GameObject damageTextGo = (GameObject)Instantiate(Resources.Load("DamageText"), transform);
         // 데미지 오브젝트를 적당한 위치로 수정
-        damageTextGo.transform.position = new Vector3(0, 2, 0);
+        //damageTextGo.transform.position = new Vector3(0, 2, 0);
+        damageTextGo.transform.localPosition = new Vector3(0, 2, 0);
         damageTextGo.GetComponent<TextMeshPro>().text = power.ToString();
         Destroy(damageTextGo, 2);
 
