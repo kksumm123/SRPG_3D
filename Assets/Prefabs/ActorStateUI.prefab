@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 165, y: 35}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 241.56157, y: 65.3}
+  m_SizeDelta: {x: 146.401, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1955770807929271920
 GameObject:
@@ -71,8 +71,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 954.8336, y: 253.7517}
+  m_AnchoredPosition: {x: 0, y: 1.9589844}
+  m_SizeDelta: {x: 1397.8856, y: 459.2254}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1955770807929271919
 CanvasRenderer:
@@ -146,8 +146,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110, y: 50}
-  m_SizeDelta: {x: 50, y: 17.68}
+  m_AnchoredPosition: {x: 161.04105, y: 92.44615}
+  m_SizeDelta: {x: 73.2005, y: 31.9963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1955770808026608437
 CanvasRenderer:
@@ -179,7 +179,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -282,7 +282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1955770808218088071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -357,8 +357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110, y: 34}
-  m_SizeDelta: {x: 50, y: 17.68}
+  m_AnchoredPosition: {x: 161.04105, y: 63.490257}
+  m_SizeDelta: {x: 73.2005, y: 31.9963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1955770808537109214
 CanvasRenderer:
@@ -390,7 +390,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -436,8 +436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 165, y: 20}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 241.56157, y: 38.153854}
+  m_SizeDelta: {x: 146.401, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1955770808728071121
 GameObject:
@@ -548,8 +548,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110, y: 20}
-  m_SizeDelta: {x: 50, y: 17.68}
+  m_AnchoredPosition: {x: 161.04105, y: 38.153854}
+  m_SizeDelta: {x: 73.2005, y: 31.9963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1955770808832879322
 CanvasRenderer:
@@ -581,7 +581,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -702,8 +702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 18.700012, y: 5.700012}
-  m_SizeDelta: {x: 63.545288, y: 60.85791}
+  m_AnchoredPosition: {x: 27.376999, y: 12.274582}
+  m_SizeDelta: {x: 93.0309, y: 110.1372}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1955770809288477158
 CanvasRenderer:
@@ -777,8 +777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 249.6, y: 49.8}
-  m_SizeDelta: {x: 50, y: 18}
+  m_AnchoredPosition: {x: 365.4168, y: 92.0842}
+  m_SizeDelta: {x: 73.2005, y: 32.5754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1955770809495885459
 CanvasRenderer:
@@ -810,7 +810,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
