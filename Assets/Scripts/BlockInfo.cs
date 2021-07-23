@@ -63,14 +63,14 @@ public class BlockInfo : MonoBehaviour
                 break;
         }
 
-        if (actor && actor == Player.SelectedPlayer)
-        { // 클릭한 위치에 actor가 있고, 플레이어가 있다면
-          //영역표시
-          // 첫번째 이동으로 갈 수 있는 곳을 추가
-            ShowMoveDistance(actor.moveDistance);
-        }
-        if (transform.position != Player.SelectedPlayer.transform.position)
-            Player.SelectedPlayer.MoveToPosition(transform.position);
+        //if (actor && actor == Player.SelectedPlayer)
+        //{ // 클릭한 위치에 actor가 있고, 플레이어가 있다면
+        //  //영역표시
+        //  // 첫번째 이동으로 갈 수 있는 곳을 추가
+        //    ShowMoveDistance(actor.moveDistance);
+        //}
+        //if (transform.position != Player.SelectedPlayer.transform.position)
+        //    Player.SelectedPlayer.MoveToPosition(transform.position);
 
     }
     void SelectPlayer()

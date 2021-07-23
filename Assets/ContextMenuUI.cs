@@ -31,6 +31,8 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
     internal void ShoStageMenu(Vector3 uiPosition)
     {
         base.Show();
+        // https://www.youtube.com/watch?v=zKjVdTQbV9w
+        // Screen Pos를 Canvas Pos로 수정 (마우스 클릭지점을 UI위치로)
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             transform.parent.GetComponent<RectTransform>()
             , uiPosition, null, out Vector2 localPoint);
