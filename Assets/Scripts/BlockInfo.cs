@@ -79,13 +79,26 @@ public class BlockInfo : MonoBehaviour
         if (actor.GetType() == typeof(Player))
         {
             //Player.SelectedPlayer = actor as Player;
-            Player.SelectedPlayer = (Player)actor;
+
+            Player player = (Player)actor;
+            if (player.CompleteTurn)
+            {
+                CenterNotifyUI.Instance.Show("모든 행동이 끝난 플레이어 입니다.");
+                return;
+            }
+
+            Player.SelectedPlayer = player;
 
             // 이동가능한 영역 표시
-            ShowMoveDistance(Player.SelectedPlayer.moveDistance);
+            if (player.completeMove == false)
+                ShowMoveableBlocks(Player.SelectedPlayer.moveDistance);
 
             // 현재 위치에서 공격 가능한 영역 표시
-            Player.SelectedPlayer.ShowAttackableArea();
+            if (player.completeAct == false)
+            {
+                Player.SelectedPlayer.ShowAttackableArea();
+            }
+
             StageManager.GameState = GameStateType.SelectBlockOrAttackTarget;
         }
     }
@@ -101,6 +114,7 @@ public class BlockInfo : MonoBehaviour
         }
         else
         {
+            // 플레이어 이동 블럭 클릭
             if (highlightedMoveableArea.Contains(this))
             {
                 Player.SelectedPlayer.ClearEnemyExistPoint();
@@ -128,7 +142,7 @@ public class BlockInfo : MonoBehaviour
     {
     }
 
-    void ShowMoveDistance(int moveDistance)
+    void ShowMoveableBlocks(int moveDistance)
     {
         //var blocks = Physics.OverlapSphere(transform.position, actor.moveDistance);
         var rotate = Quaternion.Euler(0, 45, 0);

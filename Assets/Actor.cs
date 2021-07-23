@@ -31,6 +31,7 @@ public class Actor : MonoBehaviour
 
     public bool completeMove;
     public bool completeAct;
+    public bool CompleteTurn { get => completeMove && completeAct; }
 
     // 공격 범위를 모아두자
     public List<Vector2Int> attackablePoints = new List<Vector2Int>();
