@@ -47,7 +47,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     {
         foreach (var monster in Monster.Monsters)
         {
-            StartCoroutine(monster.AutoAttackCo());
+            yield return monster.AutoAttackCo();
         }   
     }
 }
