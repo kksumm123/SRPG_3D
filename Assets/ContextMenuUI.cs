@@ -43,6 +43,7 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
 
     void EndTurnPlayer()
     {
+        StageManager.Instance.EndTurnPlayer();
         OnClick();
     }
 
