@@ -29,8 +29,10 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     void Start()
     {
         GameState = GameStateType.SelectPlayer;
-        CenterNotifyUI.Instance.Show("게임이 시작되었습니다.", 1.5f);
+        ShowCurrentTurn();
+        //CenterNotifyUI.Instance.Show("게임이 시작되었습니다.", 1.5f);
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -51,11 +53,19 @@ public class StageManager : SingletonMonoBehavior<StageManager>
         }
         ProcessNextTurn();
     }
-
+    
+    int turn = 1;
     private void ProcessNextTurn()
     {
         // 몇 번째 턴인지 보여주자
+        turn++;
         // 게임 상태를 SelectPlayer
+        ShowCurrentTurn();
         // 턴 정보 초기화 (completeMove, Act)
+        GameState = GameStateType.SelectPlayer;
+    }
+    private void ShowCurrentTurn()
+    {
+        CenterNotifyUI.Instance.Show($"{turn}번째 턴이 시작되었습니다");
     }
 }
