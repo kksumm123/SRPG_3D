@@ -48,6 +48,14 @@ public class StageManager : SingletonMonoBehavior<StageManager>
         foreach (var monster in Monster.Monsters)
         {
             yield return monster.AutoAttackCo();
-        }   
+        }
+        ProcessNextTurn();
+    }
+
+    private void ProcessNextTurn()
+    {
+        // 몇 번째 턴인지 보여주자
+        // 게임 상태를 SelectPlayer
+        // 턴 정보 초기화 (completeMove, Act)
     }
 }
