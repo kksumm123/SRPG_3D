@@ -41,13 +41,12 @@ public class ContextMenuUI : BaseUI<ContextMenuUI>
         rt.anchoredPosition = localPoint;
     }
 
-    private void EndTurnPlayer()
+    void EndTurnPlayer()
     {
         OnClick();
     }
 
-
-    private void TestMenu()
+    void TestMenu()
     {
         OnClick();
     }

@@ -1,9 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 public class Monster : Actor
 {
+    public static List<Monster> Monsters = new List<Monster>();
+    new protected void Awake()
+    {
+        base.Awake();
+        Monsters.Add(this);
+    }
+    protected void OnDestroy()
+    {
+        Monsters.Remove(this);
+    }
     Animator animator;
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Monster; }
 
@@ -25,5 +36,10 @@ public class Monster : Actor
 
         hp -= power;
         animator.Play("TakeHit");
+    }
+
+    internal string AutoAttackCo()
+    {
+        throw new NotImplementedException();
     }
 }
