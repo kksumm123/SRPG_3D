@@ -66,14 +66,34 @@ public class Player : Actor
             StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    public bool CanAttackTarget(Actor actor)
+    public bool CanAttackTarget(Actor enemy)
     {
         // 같은 팀이면 공격 X
-        if (actor.ActorType != ActorTypeEnum.Monster)
+        if (enemy.ActorType != ActorTypeEnum.Monster)
+            return false;
+
+        // 공격 가능한 범위안에 있는지 확인
+        if (IsInAttackArea(enemy.transform.position) == false)
             return false;
 
         return true;
     }
+
+    bool IsInAttackArea(Vector3 enemyPosition)
+    { // 타겟 위치가 공격 가능한 지역인지 확인
+        Vector2Int enemyPositionVector2 = enemyPosition.ToVector2Int();
+        Vector2Int currentPos = transform.position.ToVector2Int();
+
+        // 공격 가능한 지역에 적이 있는지
+        foreach (var item in attackableLocalPoints)
+        {
+            Vector2Int pos = item + currentPos; //아이템의 월드 지역 위치
+            if (pos == enemyPositionVector2)
+                return true;
+        }
+        return false;
+    }
+
     public void AttackToTarget(Actor actor)
     {
         StartCoroutine(AttackToTargetCo(actor));
@@ -127,7 +147,7 @@ public class Player : Actor
         Vector2Int currentPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.blockInfoMap;
 
-        foreach (var item in attackablePoints)
+        foreach (var item in attackableLocalPoints)
         {
             Vector2Int pos = item + currentPos; //아이템의 월드 지역 위치
             // item 블록 위에 적이 있는지

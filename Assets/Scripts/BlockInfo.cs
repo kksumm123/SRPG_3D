@@ -113,6 +113,10 @@ public class BlockInfo : MonoBehaviour
                 ClearMoveableArea();
                 Player.SelectedPlayer.AttackToTarget(actor);
             }
+            else
+            {
+                NotifyUI.Instance.Show("여기는 공격 모태");
+            }
         }
         else
         {
