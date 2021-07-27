@@ -46,15 +46,19 @@ public class Player : Actor
         return true;
     }
 
-    public void AttackToTarget(Actor actor)
+    public void AttackToTarget(Actor monster)
     {
         ClearEnemyExistPoint();
-        StartCoroutine(AttackToTartgetCo_(actor));
+        StartCoroutine(AttackToTartgetCo_(monster));
     }
 
-    private IEnumerator AttackToTartgetCo_(Actor actor)
+    private IEnumerator AttackToTartgetCo_(Actor monster)
     {
-        yield return AttackToTargetCo(actor);
+        yield return AttackToTargetCo(monster);
+        if (monster.status == StatusType.Die)
+        {
+            AddExp(monster.rewardExp);
+        }
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
