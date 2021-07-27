@@ -66,10 +66,10 @@ public class Actor : MonoBehaviour
     public void TakeHit(int power)
     {
         //맞은 데미지를 표시하자
-        GameObject damageTextGo = (GameObject)Instantiate(Resources.Load("DamageText"), transform.position, Quaternion.identity, transform);
-        // 데미지 오브젝트를 적당한 위치로 수정
-        //damageTextGo.transform.position = new Vector3(0, 2, 0);
-        damageTextGo.transform.localPosition = new Vector3(0, 2, 0);
+        GameObject damageTextGoInResource = (GameObject)Resources.Load("DamageText");
+        // 데미지 오브젝트를 적당한 위치에 생성 
+        GameObject damageTextGo = 
+            Instantiate(damageTextGoInResource, new Vector3(0, 2, 0), Quaternion.identity, transform);
         damageTextGo.GetComponent<TextMeshPro>().text = power.ToString();
         Destroy(damageTextGo, 2);
 

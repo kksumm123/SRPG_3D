@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickName: "\uBAAC\uC265\uAE34\uBAAC\uC2A4\uD0C0"
   iconName: Monster
-  power: 0
+  power: 5
   hp: 20
   maxHP: 20
   mp: 0
