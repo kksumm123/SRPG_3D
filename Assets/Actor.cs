@@ -84,6 +84,9 @@ public class Actor : MonoBehaviour
             animator.Play("Die");
             status = StatusType.Die;
             // 몬스터가 죽은 경우
+            // 몬스터를 잡은 캐릭터에게 경험치 주기
+            // 몬스터 GameObject파괴
+            // 모든 몬스터가 죽었는지 파악, 다 죽이면 스테이지 클리어
 
             // 플레이어가 죽은 경우
         }
