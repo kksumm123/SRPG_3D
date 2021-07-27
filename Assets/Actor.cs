@@ -164,6 +164,9 @@ public class Actor : MonoBehaviour
     protected float attackTime = 1;
     protected IEnumerator AttackToTargetCo(Actor attackTarget)
     {
+        // 현재 위치로 카메라 이동
+        FollowTarget.Instance.SetTarget(transform);
+
         // 타겟 방향 보기
         transform.LookAt(attackTarget.transform);
 
