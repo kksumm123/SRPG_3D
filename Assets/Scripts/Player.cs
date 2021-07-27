@@ -129,4 +129,7 @@ public class Player : Actor
     {
         return BlockType.Player;
     }
+    protected override void OnDie()
+    {
+    }
 }

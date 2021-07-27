@@ -98,7 +98,6 @@ public class Actor : MonoBehaviour
     protected virtual void OnDie()
     {
         Debug.LogError("자식들이 오버라이드해서 구현해야함, 이게 호출되면 안됨");
-
     }
 
     public virtual BlockType GetBlockType()

@@ -60,4 +60,7 @@ public class Monster : Actor
     {
         return BlockType.Monster;
     }
+    protected override void OnDie()
+    {
+    }
 }
