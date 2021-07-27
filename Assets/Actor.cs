@@ -105,6 +105,11 @@ public class Actor : MonoBehaviour
             PlayAnimation("Walk");
             FollowTarget.Instance.SetTarget(transform);
             path.RemoveAt(0);
+
+            // 최대 이동거리만큼 이동하자.
+            if (path.Count > moveDistance) //3
+                path.RemoveRange(moveDistance, path.Count - moveDistance);
+
             foreach (var item in path)
             {
                 Vector3 playerNewPos = new Vector3(item.x, myPosVec3.y, item.y);
