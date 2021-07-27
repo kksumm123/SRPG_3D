@@ -106,6 +106,11 @@ public class Actor : MonoBehaviour
             FollowTarget.Instance.SetTarget(transform);
             path.RemoveAt(0);
 
+            //몬스터 일때는 마지막 지점을 삭제해야한다
+            if (ActorType == ActorTypeEnum.Monster)
+                path.RemoveAt(path.Count - 1);
+
+
             // 최대 이동거리만큼 이동하자.
             if (path.Count > moveDistance) //3
                 path.RemoveRange(moveDistance, path.Count - moveDistance);
