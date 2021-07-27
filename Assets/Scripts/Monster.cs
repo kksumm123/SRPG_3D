@@ -41,10 +41,22 @@ public class Monster : Actor
     internal IEnumerator AutoAttackCo()
     {
         // 가장 가까이에 있는 player 탐색
+        Player enemyPlayer = GetNearestPlayer();
 
-        //Player쪽 이동
+        // 공격 가능한 위치에 있다면 바로 공격 
+        if (IsAttackablePosition(enemyPlayer.transform.position))
+        {
+            // 공격
+            yield return AttackToTargetCo(enemyPlayer);
+        }
+        else
+        {
+            //Player쪽 이동
+            yield return MoveToPositionCo(enemyPlayer.transform.position);
 
-        //공격할 수 있으면 공격
+            //공격할 수 있으면 공격
+            yield return AttackToTargetCo(enemyPlayer);
+        }
         yield return null;
     }
 }
