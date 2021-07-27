@@ -52,7 +52,7 @@ public class Monster : Actor
         else
         {
             //Player쪽 이동
-            yield return MoveToPositionCo(enemyPlayer.transform.position);
+            yield return FindPathCo(enemyPlayer.transform.position.ToVector2Int());
 
             //공격할 수 있으면 공격
             yield return AttackToTargetCo(enemyPlayer);

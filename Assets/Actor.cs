@@ -138,4 +138,17 @@ public class Actor : MonoBehaviour
             yield return null;
         }
     }
+
+    protected float attackTime = 1;
+    protected IEnumerator AttackToTargetCo(Actor attackTarget)
+    {
+        // 타겟 방향 보기
+        transform.LookAt(attackTarget.transform);
+
+        animator.Play("Attack");
+        attackTarget.TakeHit(power);
+        yield return new WaitForSeconds(attackTime);
+
+        completeAct = true;
+    }
 }
