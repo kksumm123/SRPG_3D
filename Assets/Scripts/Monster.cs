@@ -59,4 +59,9 @@ public class Monster : Actor
         }
         yield return null;
     }
+
+    private Player GetNearestPlayer()
+    {
+        throw new NotImplementedException();
+    }
 }
