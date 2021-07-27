@@ -17,9 +17,7 @@ public class Player : Actor
     }
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
     public static Player SelectedPlayer;
-    Animator animator;
-    [SerializeField] float rotatelerpValue = 0.05f;
-    [SerializeField] float moveDelay = 0.3f;
+
     void Start()
     {
         //SelectedPlayer = this;
@@ -27,53 +25,12 @@ public class Player : Actor
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
         FollowTarget.Instance.SetTarget(transform);
     }
-    public void PlayAnimation(string stateName)
-    {
-        animator.Play(stateName);
-    }
 
     Coroutine findPathCoHandle;
     void FindPath(Vector2Int goalPos)
     {
         StopCo(findPathCoHandle);
         findPathCoHandle = StartCoroutine(FindPathCo(goalPos));
-    }
-    [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water;
-    IEnumerator FindPathCo(Vector2Int destPos)
-    {
-        Vector2Int myPos = transform.position.ToVector2Int();
-        Vector3 myPosVec3 = transform.position;
-        var map = GroundManager.Instance.blockInfoMap;
-        var path = PathFinding2D.find4(myPos, destPos, map, passableValues);
-        if (path.Count == 0)
-            Debug.Log("길 업따 !");
-        else
-        {
-            // 원래 위치에서 플레이어 정보 삭제
-            GroundManager.Instance.RemoveBlockInfo(myPosVec3, BlockType.Player);
-            PlayAnimation("Run");
-            FollowTarget.Instance.SetTarget(transform);
-            path.RemoveAt(0);
-            foreach (var item in path)
-            {
-                Vector3 playerNewPos = new Vector3(item.x, myPosVec3.y, item.y);
-                StartCoroutine(LookAtLerp(playerNewPos));
-                transform.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(moveDelay);
-            }
-        }
-        PlayAnimation("Idle");
-        FollowTarget.Instance.SetTarget(null);
-        // 이동한 위치에 플레이어 정보 추가 
-        GroundManager.Instance.AddBlockInfo(myPosVec3, BlockType.Player, this);
-
-        completeMove = true;
-
-        bool existAttackTarget = ShowAttackableArea();
-        if (existAttackTarget)
-            StageManager.GameState = GameStateType.SelectToAttackTarget;
-        else
-            StageManager.GameState = GameStateType.SelectPlayer;
     }
 
     public bool CanAttackTarget(Actor enemy)
@@ -109,22 +66,12 @@ public class Player : Actor
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    IEnumerator LookAtLerp(Vector3 targetPos)
-    {
-        var endTime = Time.time + moveDelay;
-        while (endTime > Time.time)
-        {
-            transform.forward = Vector3.Slerp(transform.forward
-                    , (targetPos - transform.position).normalized, rotatelerpValue);
-            yield return null;
-        }
-    }
     internal bool OnMoveable(Vector3 position, int maxDistance)
     {
         Vector2Int goalPos = position.ToVector2Int();
         Vector2Int playerPos = transform.position.ToVector2Int();
         var map = GroundManager.Instance.blockInfoMap;
-        var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
+        var path = PathFinding2D.find4(playerPos, goalPos, map, passableValues);
         if (path.Count == 0 || path.Count > maxDistance + 1)
             return false;
 
@@ -136,6 +83,15 @@ public class Player : Actor
         enemyExistPoint.ForEach(x => x.ToChangeOriginColor());
         enemyExistPoint.Clear();
     }
+    protected override void OnCompleteMove()
+    {
+        bool existAttackTarget = ShowAttackableArea();
+        if (existAttackTarget)
+            StageManager.GameState = GameStateType.SelectToAttackTarget;
+        else
+            StageManager.GameState = GameStateType.SelectPlayer;
+    }
+
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
     public bool ShowAttackableArea()
     {
@@ -177,5 +133,9 @@ public class Player : Actor
     {
         if (handle != null)
             StopCoroutine(handle);
+    }
+    public override BlockType GetBlockType()
+    {
+        return BlockType.Player;
     }
 }

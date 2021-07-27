@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,8 +65,9 @@ public class Actor : MonoBehaviour
         //맞은 데미지 표시
         hp -= power;
     }
-    public BlockType GetBlockType()
+    public virtual BlockType GetBlockType()
     {
+        Debug.LogError("자식에서 GetBlockType() 오버라이드 해야함");
         return BlockType.None;
     }
 
@@ -82,5 +84,58 @@ public class Actor : MonoBehaviour
                 return true;
         }
         return false;
+    }
+    [SerializeField] protected BlockType passableValues = BlockType.Walkable | BlockType.Water;
+    [SerializeField] float moveDelay = 0.3f;
+    protected IEnumerator FindPathCo(Vector2Int destPos)
+    {
+        Vector2Int myPos = transform.position.ToVector2Int();
+        Vector3 myPosVec3 = transform.position;
+        var map = GroundManager.Instance.blockInfoMap;
+        var path = PathFinding2D.find4(myPos, destPos, map, passableValues);
+        if (path.Count == 0)
+            Debug.Log("길 업따 !");
+        else
+        {
+            // 원래 위치에서 플레이어 정보 삭제
+            GroundManager.Instance.RemoveBlockInfo(myPosVec3, GetBlockType());
+            PlayAnimation("Run");
+            FollowTarget.Instance.SetTarget(transform);
+            path.RemoveAt(0);
+            foreach (var item in path)
+            {
+                Vector3 playerNewPos = new Vector3(item.x, myPosVec3.y, item.y);
+                StartCoroutine(LookAtLerp(playerNewPos));
+                transform.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
+                yield return new WaitForSeconds(moveDelay);
+            }
+        }
+        PlayAnimation("Idle");
+        FollowTarget.Instance.SetTarget(null);
+        // 이동한 위치에 플레이어 정보 추가 
+        GroundManager.Instance.AddBlockInfo(myPosVec3, BlockType.Player, this);
+
+        completeMove = true;
+        OnCompleteMove();
+    }
+
+    protected virtual void OnCompleteMove()
+    {
+    }
+    protected Animator animator;
+    public void PlayAnimation(string stateName)
+    {
+        animator.Play(stateName);
+    }
+    [SerializeField] float rotatelerpValue = 0.05f;
+    IEnumerator LookAtLerp(Vector3 targetPos)
+    {
+        var endTime = Time.time + moveDelay;
+        while (endTime > Time.time)
+        {
+            transform.forward = Vector3.Slerp(transform.forward
+                    , (targetPos - transform.position).normalized, rotatelerpValue);
+            yield return null;
+        }
     }
 }

@@ -16,7 +16,6 @@ public class Monster : Actor
     {
         Monsters.Remove(this);
     }
-    Animator animator;
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Monster; }
 
     void Start()
@@ -71,5 +70,9 @@ public class Monster : Actor
             .OrderBy(x => Vector3.Distance(x.transform.position, myPos))
             .Single();
         return nearestPlayer;
+    }
+    public override BlockType GetBlockType()
+    {
+        return BlockType.Monster;
     }
 }
