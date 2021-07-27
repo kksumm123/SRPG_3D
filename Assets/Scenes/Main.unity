@@ -89321,6 +89321,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5388487297194042564, guid: 87550f2d06ecac448a0be2c9da4b3ba2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388487297194042564, guid: 87550f2d06ecac448a0be2c9da4b3ba2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388487297194042564, guid: 87550f2d06ecac448a0be2c9da4b3ba2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388487297194042564, guid: 87550f2d06ecac448a0be2c9da4b3ba2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5392808205677756732, guid: 87550f2d06ecac448a0be2c9da4b3ba2, type: 3}
       propertyPath: m_Name
       value: Monster
