@@ -10,6 +10,9 @@ public class FollowTarget : SingletonMonoBehavior<FollowTarget>
     public void SetTarget(Transform _target)
     {
         this.target = _target;
+        var pos = target.position;
+        pos.y = transform.position.y;
+        transform.position = pos;
     }
 
     void Update()
