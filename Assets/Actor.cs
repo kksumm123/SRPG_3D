@@ -64,4 +64,19 @@ public class Actor : MonoBehaviour
         //맞은 데미지 표시
         hp -= power;
     }
+
+    protected bool IsInAttackArea(Vector3 enemyPosition)
+    { // 타겟 위치가 공격 가능한 지역인지 확인
+        Vector2Int enemyPositionVector2 = enemyPosition.ToVector2Int();
+        Vector2Int currentPos = transform.position.ToVector2Int();
+
+        // 공격 가능한 지역에 적이 있는지
+        foreach (var item in attackableLocalPoints)
+        {
+            Vector2Int pos = item + currentPos; //아이템의 월드 지역 위치
+            if (pos == enemyPositionVector2)
+                return true;
+        }
+        return false;
+    }
 }

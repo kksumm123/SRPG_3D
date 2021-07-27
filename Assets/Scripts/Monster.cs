@@ -45,7 +45,7 @@ public class Monster : Actor
         Player enemyPlayer = GetNearestPlayer();
 
         // 공격 가능한 위치에 있다면 바로 공격 
-        if (IsAttackablePosition(enemyPlayer.transform.position))
+        if (IsInAttackArea(enemyPlayer.transform.position))
         {
             // 공격
             yield return AttackToTargetCo(enemyPlayer);
@@ -71,9 +71,5 @@ public class Monster : Actor
             .OrderBy(x => Vector3.Distance(x.transform.position, myPos))
             .Single();
         return nearestPlayer;
-    }
-    bool IsAttackablePosition(Vector3 position)
-    {
-        throw new NotImplementedException();
     }
 }
