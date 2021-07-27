@@ -71,10 +71,11 @@ public static class PathFinding2D
 
         foreach (var item in getNeighbors(currentNode.pos))
         {
-            BlockType itemBlockType = map[item].blockType;
-            if (to == item)
-                itemBlockType &= ~BlockType.Player;
-            if (map.ContainsKey(item) && passableValues.HasFlag(itemBlockType))
+            //BlockType itemBlockType = map[item].blockType;
+            //if (to == item)
+            //    itemBlockType &= ~BlockType.Player;
+
+            if (map.ContainsKey(item) && passableValues.HasFlag(map[item].blockType) || to == item)
             {
                 findTemp(openList, currentNode, item, to, getDistance);
             }
