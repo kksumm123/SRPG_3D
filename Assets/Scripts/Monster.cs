@@ -39,7 +39,8 @@ public class Monster : Actor
             yield return FindPathCo(enemyPlayer.transform.position.ToVector2Int());
 
             //공격할 수 있으면 공격
-            yield return AttackToTargetCo(enemyPlayer);
+            if (IsInAttackArea(enemyPlayer.transform.position))
+                yield return AttackToTargetCo(enemyPlayer);
         }
         yield return null;
     }
