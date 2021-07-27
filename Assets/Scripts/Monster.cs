@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 public class Monster : Actor
@@ -62,6 +63,12 @@ public class Monster : Actor
 
     private Player GetNearestPlayer()
     {
-        throw new NotImplementedException();
+        var myPos = transform.position;
+        //플레이어 리스트를 거리순으로 정렬 후 맨 앞에 있는 정보 가져옴
+        var nearestPlayer = Player.Players
+            .Where(x => x.status != StatusType.Die)
+            .OrderBy(x => Vector3.Distance(x.transform.position, myPos))
+            .Single();
+        return nearestPlayer;
     }
 }
