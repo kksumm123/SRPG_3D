@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class Player : Actor
 {
+    public static List<Player> Players = new List<Player>();
+    new void Awake()
+    {
+        base.Awake();
+        Players.Add(this);
+    }
+    private void OnDestroy()
+    {
+        Players.Remove(this);
+    }
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
     public static Player SelectedPlayer;
     Animator animator;
