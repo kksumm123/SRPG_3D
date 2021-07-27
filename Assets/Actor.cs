@@ -63,7 +63,8 @@ public class Actor : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void TakeHit(int power)
+    float takeHitTime = 0.7f;
+    public IEnumerator TakeHit(int power)
     {
         //맞은 데미지를 표시하자
         GameObject damageTextGoInResource = (GameObject)Resources.Load("DamageText");
@@ -76,6 +77,16 @@ public class Actor : MonoBehaviour
         //맞은 데미지 표시
         hp -= power;
         animator.Play("TakeHit");
+        yield return new WaitForSeconds(takeHitTime);
+        
+        if (hp <= 0)
+        {
+            animator.Play("Die");
+            status = StatusType.Die;
+            // 몬스터가 죽은 경우
+
+            // 플레이어가 죽은 경우
+        }
     }
     public virtual BlockType GetBlockType()
     {
