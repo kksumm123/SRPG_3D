@@ -14,18 +14,18 @@ public class FollowTarget : SingletonMonoBehavior<FollowTarget>
         {
             var pos = target.position;
             pos.y = transform.position.y;
-            transform.position = pos;
+            transform.position = pos + offset;
         }
     }
+    // 다른 컴포넌트에 Pan 기능때문에 사용 안함 
+    //void Update()
+    //{
+    //    if (target == null)
+    //        return;
 
-    void Update()
-    {
-        if (target == null)
-            return;
-
-        var newPow = target.position + offset;
-        newPow.x = transform.position.x;
-        newPow.y = transform.position.y;
-        transform.position = newPow;
-    }
+    //    var newPow = target.position + offset;
+    //    newPow.x = transform.position.x;
+    //    newPow.y = transform.position.y;
+    //    transform.position = newPow;
+    //}
 }
