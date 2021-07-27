@@ -46,13 +46,13 @@ public class Player : Actor
         return true;
     }
 
-    public void AttackToTarget(Actor monster)
+    public void AttackToTarget(Monster monster)
     {
         ClearEnemyExistPoint();
         StartCoroutine(AttackToTartgetCo_(monster));
     }
 
-    private IEnumerator AttackToTartgetCo_(Actor monster)
+    private IEnumerator AttackToTartgetCo_(Monster monster)
     {
         yield return AttackToTargetCo(monster);
         if (monster.status == StatusType.Die)
