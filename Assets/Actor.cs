@@ -62,7 +62,10 @@ public class Actor : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>();
     }
-
+    protected void OnDestroy()
+    { // 죽을 때, 밟고있는 블럭에 대한 정보 삭제
+        GroundManager.Instance.RemoveBlockInfo(transform.position, GetBlockType());
+    }
     float takeHitTime = 0.7f;
     public IEnumerator TakeHitCo(int power)
     {

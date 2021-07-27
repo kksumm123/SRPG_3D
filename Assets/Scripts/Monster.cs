@@ -7,13 +7,16 @@ using UnityEngine;
 public class Monster : Actor
 {
     public static List<Monster> Monsters = new List<Monster>();
+    internal object rewardExp;
+
     new protected void Awake()
     {
         base.Awake();
         Monsters.Add(this);
     }
-    protected void OnDestroy()
+    new protected void OnDestroy()
     {
+        base.OnDestroy();
         Monsters.Remove(this);
     }
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Monster; }

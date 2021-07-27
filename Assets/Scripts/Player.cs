@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,9 @@ public class Player : Actor
         base.Awake();
         Players.Add(this);
     }
-    private void OnDestroy()
+    new private void OnDestroy()
     {
+        base.OnDestroy();
         Players.Remove(this);
     }
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
@@ -60,6 +62,11 @@ public class Player : Actor
             AddExp(monster.rewardExp);
         }
         StageManager.GameState = GameStateType.SelectPlayer;
+    }
+
+    private void AddExp(object rewardExp)
+    {
+        throw new NotImplementedException();
     }
 
     internal bool OnMoveable(Vector3 position, int maxDistance)
