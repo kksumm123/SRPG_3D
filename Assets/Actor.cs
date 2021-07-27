@@ -126,7 +126,7 @@ public class Actor : MonoBehaviour
         PlayAnimation("Idle");
         FollowTarget.Instance.SetTarget(null);
         // 이동한 위치에 플레이어 정보 추가 
-        GroundManager.Instance.AddBlockInfo(myPosVec3, BlockType.Player, this);
+        GroundManager.Instance.AddBlockInfo(transform.position, GetBlockType(), this);
 
         completeMove = true;
         OnCompleteMove();

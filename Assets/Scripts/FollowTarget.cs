@@ -18,6 +18,7 @@ public class FollowTarget : SingletonMonoBehavior<FollowTarget>
             return;
 
         var newPow = target.position + offset;
+        newPow.x = transform.position.x;
         newPow.y = transform.position.y;
         transform.position = newPow;
     }
