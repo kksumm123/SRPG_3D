@@ -28,7 +28,6 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         //= new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기, A*에서 사용
     public Dictionary<Vector2Int, BlockInfo> blockInfoMap
         = new Dictionary<Vector2Int, BlockInfo>();
-    [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water; // 비트연산, int1 | int2 = 3 => 01 | 10 = 11
 
     [SerializeField] bool useDebugMode = true;
     List<GameObject> debugTexts = new List<GameObject>();
