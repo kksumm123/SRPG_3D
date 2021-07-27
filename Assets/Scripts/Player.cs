@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : Actor
@@ -129,7 +130,13 @@ public class Player : Actor
     {
         return BlockType.Player;
     }
-    protected override void OnDie()
+    protected override void OnDie(Actor killer)
     {
+        // 플레이어가 죽은 경우
+        // 모든 플레이어가 죽었는지 파악, 다 죽었으면 GameOver
+        if (Players.Where(x => x.status != StatusType.Die).Count() == 0)
+        {
+            CenterNotifyUI.Instance.Show("게임 오버");
+        }
     }
 }

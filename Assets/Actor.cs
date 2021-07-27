@@ -64,7 +64,7 @@ public class Actor : MonoBehaviour
     }
 
     float takeHitTime = 0.7f;
-    public IEnumerator TakeHitCo(int power)
+    public IEnumerator TakeHitCo(int power, Actor killer)
     {
         //맞은 데미지를 표시하자
         GameObject damageTextGoInResource = (GameObject)Resources.Load("DamageText");
@@ -84,18 +84,11 @@ public class Actor : MonoBehaviour
             animator.Play("Die");
             status = StatusType.Die;
 
-            OnDie();
-            // 몬스터가 죽은 경우
-            // 몬스터를 잡은 캐릭터에게 경험치 주기
-            // 몬스터 GameObject파괴
-            // 모든 몬스터가 죽었는지 파악, 다 죽이면 스테이지 클리어
-
-            // 플레이어가 죽은 경우
-            // 모든 플레이어가 죽었는지 파악, 다 죽었으면 GameOver
+            OnDie(killer);
         }
     }
 
-    protected virtual void OnDie()
+    protected virtual void OnDie(Actor killer)
     {
         Debug.LogError("자식들이 오버라이드해서 구현해야함, 이게 호출되면 안됨");
     }

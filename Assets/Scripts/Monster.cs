@@ -60,7 +60,16 @@ public class Monster : Actor
     {
         return BlockType.Monster;
     }
-    protected override void OnDie()
+    protected override void OnDie(Actor killer)
     {
+        // 몬스터가 죽은 경우
+        // 몬스터를 잡은 캐릭터에게 경험치 주기
+        // 몬스터 GameObject파괴
+        // 모든 몬스터가 죽었는지 파악, 다 죽이면 스테이지 클리어
+        Destroy(gameObject, 1); // 죽는 모션 기다려야 하니까 1초 뒤 파괴
+        if (Monsters.Where(x => x.status != StatusType.Die).Count() == 0)
+        {
+            CenterNotifyUI.Instance.Show("스테이지 클리어");
+        }
     }
 }
