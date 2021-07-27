@@ -66,6 +66,7 @@ public class Actor : MonoBehaviour
     {
         //맞은 데미지 표시
         hp -= power;
+        animator.Play("TakeHit");
     }
     public virtual BlockType GetBlockType()
     {
@@ -101,7 +102,7 @@ public class Actor : MonoBehaviour
         {
             // 원래 위치에서 플레이어 정보 삭제
             GroundManager.Instance.RemoveBlockInfo(myPosVec3, GetBlockType());
-            PlayAnimation("Run");
+            PlayAnimation("Walk");
             FollowTarget.Instance.SetTarget(transform);
             path.RemoveAt(0);
             foreach (var item in path)
