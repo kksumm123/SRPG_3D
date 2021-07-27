@@ -21,7 +21,6 @@ public class Monster : Actor
     void Start()
     {
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Monster, this);
-        animator = GetComponentInChildren<Animator>();
     }
 
     public override void TakeHit(int power)

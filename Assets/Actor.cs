@@ -58,6 +58,8 @@ public class Actor : MonoBehaviour
             attackableLocalPoints.Add((item.transform.position - transform.position).ToVector2Int());
         // 다시 앞을 보도록 
         transform.Rotate(0, 90, 0);
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     public virtual void TakeHit(int power)
