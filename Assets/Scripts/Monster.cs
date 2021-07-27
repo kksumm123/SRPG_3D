@@ -38,8 +38,13 @@ public class Monster : Actor
         animator.Play("TakeHit");
     }
 
-    internal string AutoAttackCo()
+    internal IEnumerator AutoAttackCo()
     {
-        throw new NotImplementedException();
+        // 가장 가까이에 있는 player 탐색
+
+        //Player쪽 이동
+
+        //공격할 수 있으면 공격
+        yield return null;
     }
 }
