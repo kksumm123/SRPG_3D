@@ -42,7 +42,7 @@ public class Actor : MonoBehaviour
 
         // 앞쪽 공격 포인트
         foreach (var item in attackPoints)
-            attackableLocalPoints.Add(item.transform.position.ToVector2Int());
+            attackableLocalPoints.Add((item.transform.position -transform.position).ToVector2Int());
 
         // 오른쪽 공격 포인트
         transform.Rotate(0, 90, 0);
