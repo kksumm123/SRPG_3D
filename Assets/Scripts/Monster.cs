@@ -53,7 +53,7 @@ public class Monster : Actor
         var nearestPlayer = Player.Players
             .Where(x => x.status != StatusType.Die)
             .OrderBy(x => Vector3.Distance(x.transform.position, myPos))
-            .Single();
+            .First();
         return nearestPlayer;
     }
     public override BlockType GetBlockType()

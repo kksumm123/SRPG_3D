@@ -35,7 +35,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
-            ContextMenuUI.Instance. ShoStageMenu(Input.mousePosition);
+            ContextMenuUI.Instance.ShoStageMenu(Input.mousePosition);
     }
 
     public void EndTurnPlayer()
@@ -52,15 +52,32 @@ public class StageManager : SingletonMonoBehavior<StageManager>
         }
         ProcessNextTurn();
     }
-    
+
     int turn = 1;
     private void ProcessNextTurn()
     {
+        // 턴 정보를 초기화 하자
+        ClearTurnInfo();
+
         // 몇 번째 턴인지 보여주자
         turn++;
 
         // 턴이 시작되면
         OnStartTurn();
+    }
+
+    private void ClearTurnInfo()
+    {
+        Player.Players.ForEach(x =>
+        {
+            x.completeMove = false;
+            x.completeAct = false;
+        });
+        Monster.Monsters.ForEach(x =>
+        {
+            x.completeMove = false;
+            x.completeAct = false;
+        });
     }
 
     private void OnStartTurn()
