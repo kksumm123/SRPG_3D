@@ -61,6 +61,7 @@ public class Monster : Actor
         yield return null;
     }
 
+
     private Player GetNearestPlayer()
     {
         var myPos = transform.position;
@@ -70,5 +71,9 @@ public class Monster : Actor
             .OrderBy(x => Vector3.Distance(x.transform.position, myPos))
             .Single();
         return nearestPlayer;
+    }
+    bool IsAttackablePosition(Vector3 position)
+    {
+        throw new NotImplementedException();
     }
 }
