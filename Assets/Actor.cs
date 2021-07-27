@@ -43,7 +43,7 @@ public class Actor : MonoBehaviour
 
         // 앞쪽 공격 포인트
         foreach (var item in attackPoints)
-            attackableLocalPoints.Add((item.transform.position -transform.position).ToVector2Int());
+            attackableLocalPoints.Add((item.transform.position - transform.position).ToVector2Int());
 
         // 오른쪽 공격 포인트
         transform.Rotate(0, 90, 0);
@@ -64,12 +64,12 @@ public class Actor : MonoBehaviour
     }
 
     float takeHitTime = 0.7f;
-    public IEnumerator TakeHit(int power)
+    public IEnumerator TakeHitCo(int power)
     {
         //맞은 데미지를 표시하자
         GameObject damageTextGoInResource = (GameObject)Resources.Load("DamageText");
         // 데미지 오브젝트를 적당한 위치에 생성 
-        GameObject damageTextGo = 
+        GameObject damageTextGo =
             Instantiate(damageTextGoInResource, new Vector3(0, 2, 0), Quaternion.identity, transform);
         damageTextGo.GetComponent<TextMeshPro>().text = power.ToString();
         Destroy(damageTextGo, 2);
@@ -78,11 +78,13 @@ public class Actor : MonoBehaviour
         hp -= power;
         animator.Play("TakeHit");
         yield return new WaitForSeconds(takeHitTime);
-        
+
         if (hp <= 0)
         {
             animator.Play("Die");
             status = StatusType.Die;
+
+            OnDie();
             // 몬스터가 죽은 경우
             // 몬스터를 잡은 캐릭터에게 경험치 주기
             // 몬스터 GameObject파괴
@@ -92,6 +94,13 @@ public class Actor : MonoBehaviour
             // 모든 플레이어가 죽었는지 파악, 다 죽었으면 GameOver
         }
     }
+
+    protected virtual void OnDie()
+    {
+        Debug.LogError("자식들이 오버라이드해서 구현해야함, 이게 호출되면 안됨");
+
+    }
+
     public virtual BlockType GetBlockType()
     {
         Debug.LogError("자식에서 GetBlockType() 오버라이드 해야함");
@@ -186,7 +195,7 @@ public class Actor : MonoBehaviour
         transform.LookAt(attackTarget.transform);
 
         animator.Play("Attack");
-        attackTarget.TakeHit(power);
+        StartCoroutine(attackTarget.TakeHitCo(power));
         yield return new WaitForSeconds(attackTime);
 
         completeAct = true;
