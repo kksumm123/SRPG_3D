@@ -64,6 +64,10 @@ public class Actor : MonoBehaviour
         //맞은 데미지 표시
         hp -= power;
     }
+    public BlockType GetBlockType()
+    {
+        return BlockType.None;
+    }
 
     protected bool IsInAttackArea(Vector3 enemyPosition)
     { // 타겟 위치가 공격 가능한 지역인지 확인

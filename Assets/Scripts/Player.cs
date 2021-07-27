@@ -39,35 +39,35 @@ public class Player : Actor
         findPathCoHandle = StartCoroutine(FindPathCo(goalPos));
     }
     [SerializeField] BlockType passableValues = BlockType.Walkable | BlockType.Water;
-    IEnumerator FindPathCo(Vector2Int goalPos)
+    IEnumerator FindPathCo(Vector2Int destPos)
     {
-        Vector2Int playerPos = transform.position.ToVector2Int();
+        Vector2Int myPos = transform.position.ToVector2Int();
+        Vector3 myPosVec3 = transform.position;
         var map = GroundManager.Instance.blockInfoMap;
-        var path = PathFinding2D.find4(playerPos, goalPos, (Dictionary<Vector2Int, BlockInfo>)map, passableValues);
+        var path = PathFinding2D.find4(myPos, destPos, map, passableValues);
         if (path.Count == 0)
             Debug.Log("길 업따 !");
         else
         {
             // 원래 위치에서 플레이어 정보 삭제
-            GroundManager.Instance
-                .RemoveBlockInfo(transform.position, BlockType.Player);
+            GroundManager.Instance.RemoveBlockInfo(myPosVec3, BlockType.Player);
             PlayAnimation("Run");
             FollowTarget.Instance.SetTarget(transform);
             path.RemoveAt(0);
             foreach (var item in path)
             {
-                Vector3 playerNewPos = new Vector3(item.x, 0, item.y);
-                StartCoroutine(PlayerLookAtLerp(playerNewPos));
+                Vector3 playerNewPos = new Vector3(item.x, myPosVec3.y, item.y);
+                StartCoroutine(LookAtLerp(playerNewPos));
                 transform.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(moveDelay);
             }
-            completeMove = true;
         }
-        Player.SelectedPlayer.PlayAnimation("Idle");
+        PlayAnimation("Idle");
         FollowTarget.Instance.SetTarget(null);
         // 이동한 위치에 플레이어 정보 추가 
-        GroundManager.Instance
-            .AddBlockInfo(transform.position, BlockType.Player, this);
+        GroundManager.Instance.AddBlockInfo(myPosVec3, BlockType.Player, this);
+
+        completeMove = true;
 
         bool existAttackTarget = ShowAttackableArea();
         if (existAttackTarget)
@@ -109,7 +109,7 @@ public class Player : Actor
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    IEnumerator PlayerLookAtLerp(Vector3 targetPos)
+    IEnumerator LookAtLerp(Vector3 targetPos)
     {
         var endTime = Time.time + moveDelay;
         while (endTime > Time.time)
