@@ -89,6 +89,7 @@ public class Actor : MonoBehaviour
             // 모든 몬스터가 죽었는지 파악, 다 죽이면 스테이지 클리어
 
             // 플레이어가 죽은 경우
+            // 모든 플레이어가 죽었는지 파악, 다 죽었으면 GameOver
         }
     }
     public virtual BlockType GetBlockType()
