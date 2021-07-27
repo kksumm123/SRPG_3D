@@ -60,7 +60,7 @@ public class Monster : Actor
     {
         return BlockType.Monster;
     }
-    protected override void OnDie(Actor killer)
+    protected override void OnDie()
     {
         // 몬스터가 죽은 경우
         // 몬스터를 잡은 캐릭터에게 경험치 주기

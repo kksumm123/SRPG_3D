@@ -64,7 +64,7 @@ public class Actor : MonoBehaviour
     }
 
     float takeHitTime = 0.7f;
-    public IEnumerator TakeHitCo(int power, Actor killer)
+    public IEnumerator TakeHitCo(int power)
     {
         //맞은 데미지를 표시하자
         GameObject damageTextGoInResource = (GameObject)Resources.Load("DamageText");
@@ -84,11 +84,11 @@ public class Actor : MonoBehaviour
             animator.Play("Die");
             status = StatusType.Die;
 
-            OnDie(killer);
+            OnDie();
         }
     }
 
-    protected virtual void OnDie(Actor killer)
+    protected virtual void OnDie()
     {
         Debug.LogError("자식들이 오버라이드해서 구현해야함, 이게 호출되면 안됨");
     }
