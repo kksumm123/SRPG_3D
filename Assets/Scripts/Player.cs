@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Player : Actor
 {
@@ -90,8 +91,20 @@ public class Player : Actor
         if (monster.status == StatusType.Die)
         {
             AddExp(monster.rewardExp);
+            DropItem(monster.dropGroupID);
         }
         StageManager.GameState = GameStateType.SelectPlayer;
+    }
+
+    void DropItem(int dropGroupID)
+    {
+        var dropGroup = GlobalData.Instance.dropItemGroupDataMap[dropGroupID];
+
+        var dropItemRatioInfo = dropGroup.dropItems.OrderByDescending(x => x.ratio * Random.Range(0, 1f)).First();
+        Debug.Log($"{dropItemRatioInfo.dropItemID}, {dropItemRatioInfo.ratio}");
+
+        var dropItem = GlobalData.Instance.itemDataMap[dropItemRatioInfo.dropItemID];
+        Debug.Log(dropItem.ToString());
     }
 
     //int exp, level;

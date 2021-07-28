@@ -18,6 +18,11 @@ public class ItemData
     public int sellPrice;
     public int buyPrice;
     public string iconName;
+
+    public override string ToString()
+    {
+        return $"ID/allowLevel/sellPrice/buyPrice : {ID}/{allowLevel}/{iconName}/{sellPrice}/{buyPrice}";
+    }
 }
 [System.Serializable]
 public class ItemDropInfo
@@ -28,7 +33,7 @@ public class ItemDropInfo
 [System.Serializable]
 public class DropItemGroupData
 {
-    public int ID;
+    public int ID; //그룹에 대한 ID
     public List<ItemDropInfo> dropItems;
 }
 
