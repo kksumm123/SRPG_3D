@@ -64,7 +64,10 @@ public class Actor : MonoBehaviour
     }
     protected void OnDestroy()
     { // 죽을 때, 밟고있는 블럭에 대한 정보 삭제
-        GroundManager.Instance?.RemoveBlockInfo(transform.position, GetBlockType());
+        // 어플리케이션 종료시, 스크립트가 부서졌다면 return
+        if (GroundManager.ApplicationQuit == false)
+            return;
+        GroundManager.Instance.RemoveBlockInfo(transform.position, GetBlockType());
     }
     float takeHitTime = 0.7f;
     public IEnumerator TakeHitCo(int power)
