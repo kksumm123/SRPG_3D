@@ -55,12 +55,6 @@ public class Player : Actor
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
         FollowTarget.Instance.SetTarget(transform);
     }
-    protected void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            AddExp(5);
-    }
-
     Coroutine findPathCoHandle;
     void FindPath(Vector2Int goalPos)
     {
