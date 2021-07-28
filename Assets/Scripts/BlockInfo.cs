@@ -12,6 +12,7 @@ public enum BlockType
     Water = 1 << 1,
     Player = 1 << 2,
     Monster = 1 << 3,
+    Item = 1 << 4,
 }
 public class BlockInfo : MonoBehaviour
 {
@@ -148,8 +149,6 @@ public class BlockInfo : MonoBehaviour
         //var blocks = Physics.OverlapSphere(transform.position, actor.moveDistance);
         var rotate = Quaternion.Euler(0, 45, 0);
         Vector3 halfExtents = (moveDistance / Mathf.Sqrt(2)) * 0.99f * Vector3.one;
-        Debug.Log((moveDistance / Mathf.Sqrt(2)));
-        Debug.Log((moveDistance / Mathf.Sqrt(2)) * 0.99f);
         var blocks = Physics.OverlapBox(transform.position, halfExtents, rotate);
         foreach (var item in blocks)
         {
@@ -172,6 +171,7 @@ public class BlockInfo : MonoBehaviour
     string debugTextPrefabString = "DebugTextPrefab";
     GameObject debutTextGos;
     internal Actor actor;
+    internal int dropItemID;
 
     public void UpdateDebugInfo()
     {

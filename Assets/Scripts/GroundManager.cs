@@ -24,8 +24,8 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
 {
     [SerializeField] Vector2Int playerPos; // 플레이어 위치
     [SerializeField] Vector2Int goalPos;   // 클릭한 위치 (이동목표)
-    //public Dictionary<Vector2Int, BlockType> blockInfoMap
-        //= new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기, A*에서 사용
+                                           //public Dictionary<Vector2Int, BlockType> blockInfoMap
+                                           //= new Dictionary<Vector2Int, BlockType>(); // 블록 맵 지정하기, A*에서 사용
     public Dictionary<Vector2Int, BlockInfo> blockInfoMap
         = new Dictionary<Vector2Int, BlockInfo>();
     [SerializeField] bool useDebugMode = true;
@@ -52,7 +52,16 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             blockInfoMap[intPos] = item;
         }
     }
+    public void AddBlockInfo(Vector3 position, BlockType addBlockType, int dropItemID)
+    {
+        // todo : 아이템을 보여주자
+        Vector2Int pos = position.ToVector2Int();
+        blockInfoMap[pos].blockType |= addBlockType;
+        blockInfoMap[pos].dropItemID = dropItemID;
 
+        if (useDebugMode)
+            blockInfoMap[pos].UpdateDebugInfo();
+    }
     public void AddBlockInfo(Vector3 position, BlockType addBlockType, Actor actor)
     {
         Vector2Int pos = position.ToVector2Int();

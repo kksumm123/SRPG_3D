@@ -98,8 +98,12 @@ public class Player : Actor
         }
         StageManager.GameState = GameStateType.SelectPlayer;
     }
-
-    void DropItem(int dropGroupID)
+    [ContextMenu("아이템드랍")]
+    void DropItemTest()
+    {
+        DropItem(1);
+    }
+    void DropItem(int dropGroupID, Vector3? position = null)
     {
         var dropGroup = GlobalData.Instance.dropItemGroupDataMap[dropGroupID];
 
@@ -108,6 +112,8 @@ public class Player : Actor
 
         var dropItem = GlobalData.Instance.itemDataMap[dropItemRatioInfo.dropItemID];
         Debug.Log(dropItem.ToString());
+
+        GroundManager.Instance.AddBlockInfo(position.Value, BlockType.Item, dropItem.ID);
     }
 
     //int exp, level;
