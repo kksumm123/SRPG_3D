@@ -70,6 +70,9 @@ public class Player : Actor
     {
         // 경험치 추가
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
+
+        PlayerPrefs.SetInt("exp", exp);
+        PlayerPrefs.Save();
     }
 
     internal bool OnMoveable(Vector3 position, int maxDistance)
