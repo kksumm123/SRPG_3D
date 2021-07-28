@@ -54781,6 +54781,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6dfc2f12df21f0489d4479dcdc4c2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
+  playerDatas:
+  - level: 1
+    hp: 30
+    mp: 30
+    maxExp: 10
+  - level: 2
+    hp: 35
+    mp: 35
+    maxExp: 15
+  - level: 3
+    hp: 40
+    mp: 40
+    maxExp: 20
 --- !u!1001 &1350003027
 PrefabInstance:
   m_ObjectHideFlags: 0
