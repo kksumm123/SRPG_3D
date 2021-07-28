@@ -194,6 +194,25 @@ public class Actor : MonoBehaviour
 
         animator.Play("Attack");
         StartCoroutine(attackTarget.TakeHitCo(power));
+
+        // 스플래시 데미지 적용하자
+        var subAttackAreas = transform.GetComponentsInChildren<SubAttackArea>();
+        foreach (var item in subAttackAreas)
+        {
+            switch (item.target)
+            {
+                case SubAttackArea.Target.EnemyOnly:
+                    break;
+                case SubAttackArea.Target.AllyOnly:
+                    break;
+                case SubAttackArea.Target.All:
+                    break;
+            }
+
+            int subAttackPower = Mathf.RoundToInt(power * item.damageRatio);
+            StartCoroutine(attackTarget.TakeHitCo(subAttackPower));
+        }
+
         yield return new WaitForSeconds(attackTime);
 
         completeAct = true;
