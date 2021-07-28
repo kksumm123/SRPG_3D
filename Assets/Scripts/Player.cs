@@ -23,8 +23,7 @@ public class Player : Actor
         exp = new SaveInt("exp" + ID);
         level = new SaveInt("level" + ID);
         comment = new SaveString("comment" + ID);
-        maxExp = GlobalData.Instance.playerDatas
-                .Find(x => x.level == level.Value).maxExp;
+        maxExp = GlobalData.Instance.playerDataMap[level.Value].maxExp;
     }
 
     [ContextMenu("저장 테스트")]

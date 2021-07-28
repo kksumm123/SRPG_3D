@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 [System.Serializable]
 public class PlayerLevelData
 {
@@ -12,5 +13,10 @@ public class PlayerLevelData
 
 public class GlobalData : SingletonMonoBehavior<GlobalData>
 {
-    public List<PlayerLevelData> playerDatas;
+    [SerializeField] List<PlayerLevelData> playerDatas;
+    public Dictionary<int, PlayerLevelData> playerDataMap;
+    protected override void OnInit()
+    {
+        playerDataMap = playerDatas.ToDictionary(x => x.level);
+    }
 }
