@@ -41,9 +41,17 @@ public class DropItemGroupData
     public List<ItemDropInfo> dropItems;
 }
 
-public class GlobalData : SingletonMonoBehavior<GlobalData>
+public class GlobalData : MonoBehaviour
 {
-    [SerializeField] List<PlayerLevelData> playerDatas = new List<PlayerLevelData>();
+    public static GlobalData Instance;
+    private void Awake()
+    {
+        Instance = this;
+        playerDataMap = playerDatas.ToDictionary(x => x.level);
+        itemDataMap = itemDatas.ToDictionary(x => x.ID);
+        dropItemGroupDataMap = dropItemGroupData.ToDictionary(x => x.ID);
+    }
+    [SerializeField] List<PlayerLevelData> playerDatas; // = new List<PlayerLevelData>();
     public Dictionary<int, PlayerLevelData> playerDataMap;
 
     [SerializeField] List<ItemData> itemDatas = new List<ItemData>();
@@ -51,10 +59,10 @@ public class GlobalData : SingletonMonoBehavior<GlobalData>
 
     [SerializeField] List<DropItemGroupData> dropItemGroupData = new List<DropItemGroupData>();
     public Dictionary<int, DropItemGroupData> dropItemGroupDataMap;
-    protected override void OnInit()
-    {
-        playerDataMap = playerDatas.ToDictionary(x => x.level);
-        itemDataMap = itemDatas.ToDictionary(x => x.ID);
-        dropItemGroupDataMap = dropItemGroupData.ToDictionary(x => x.ID);
-    }
+    //protected override void OnInit()
+    //{ // 커밋했습니다 ! 
+    //    playerDataMap = playerDatas.ToDictionary(x => x.level);
+    //    itemDataMap = itemDatas.ToDictionary(x => x.ID);
+    //    dropItemGroupDataMap = dropItemGroupData.ToDictionary(x => x.ID);
+    //}
 }
