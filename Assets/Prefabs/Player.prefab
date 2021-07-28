@@ -245,11 +245,23 @@ MonoBehaviour:
   maxMP: 50
   status: 0
   moveDistance: 5
-  attackablePoints: []
-  rotatelerpValue: 0.05
-  moveDelay: 0.3
+  completeMove: 0
+  completeAct: 0
+  attackableLocalPoints: []
   passableValues: 3
-  attackTime: 1
+  moveDelay: 0.3
+  rotatelerpValue: 0.05
+  ID: 1324
+  exp:
+    key: 
+    value: 0
+  level:
+    key: 
+    value: 0
+  comment:
+    key: 
+    value: 
+  enemyExistPoint: []
 --- !u!114 &1441670126
 MonoBehaviour:
   m_ObjectHideFlags: 0
