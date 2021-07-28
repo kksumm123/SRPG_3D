@@ -52,12 +52,15 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
             blockInfoMap[intPos] = item;
         }
     }
-    public void AddBlockInfo(Vector3 position, BlockType addBlockType, int dropItemID)
+    public void AddBlockInfo(Vector3 position, BlockType addBlockType, ItemData dropItem)
     {
-        // todo : 아이템을 보여주자
+        // 아이템을 보여주자
+        var dropItemGo = (GameObject)Instantiate(Resources.Load("DropItem"));
+        dropItemGo.GetComponentInChildren<SpriteRenderer>().sprite = (Sprite)Resources.Load("Icon/" + dropItem.iconName, typeof(Sprite));
+        dropItemGo.transform.position = position;
         Vector2Int pos = position.ToVector2Int();
         blockInfoMap[pos].blockType |= addBlockType;
-        blockInfoMap[pos].dropItemID = dropItemID;
+        blockInfoMap[pos].dropItemID = dropItem.ID;
 
         if (useDebugMode)
             blockInfoMap[pos].UpdateDebugInfo();

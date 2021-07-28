@@ -101,7 +101,7 @@ public class Player : Actor
     [ContextMenu("아이템드랍")]
     void DropItemTest()
     {
-        DropItem(1);
+        DropItem(1, transform.position);
     }
     void DropItem(int dropGroupID, Vector3? position = null)
     {
@@ -113,7 +113,7 @@ public class Player : Actor
         var dropItem = GlobalData.Instance.itemDataMap[dropItemRatioInfo.dropItemID];
         Debug.Log(dropItem.ToString());
 
-        GroundManager.Instance.AddBlockInfo(position.Value, BlockType.Item, dropItem.ID);
+        GroundManager.Instance.AddBlockInfo(position.Value, BlockType.Item, dropItem);
     }
 
     //int exp, level;
