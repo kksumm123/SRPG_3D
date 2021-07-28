@@ -36,7 +36,9 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (GameState == GameStateType.SelectedPlayerMoveOrAct)
+            if (GameState == GameStateType.SelectedPlayerMoveOrAct
+                ||
+                GameState == GameStateType.SelectToAttackTarget)
             {
                 Player.SelectedPlayer = null;
                 BlockInfo.ClearMoveableArea();
