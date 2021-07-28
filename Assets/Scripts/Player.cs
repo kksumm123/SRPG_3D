@@ -15,15 +15,18 @@ public class Player : Actor
     {
         base.Awake();
         Players.Add(this);
-        InitExpAndLevel();
+        InitLevelData();
     }
 
-    void InitExpAndLevel()
+    void InitLevelData()
     {
         exp = new SaveInt("exp" + ID);
         level = new SaveInt("level" + ID);
         comment = new SaveString("comment" + ID);
-        maxExp = GlobalData.Instance.playerDataMap[level.Value].maxExp;
+        var data = GlobalData.Instance.playerDataMap[level.Value];
+        maxExp = data.maxExp;
+        hp = data.hp;
+        mp = data.mp;
     }
 
     [ContextMenu("저장 테스트")]
