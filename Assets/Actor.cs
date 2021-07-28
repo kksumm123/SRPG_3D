@@ -196,21 +196,40 @@ public class Actor : MonoBehaviour
         StartCoroutine(attackTarget.TakeHitCo(power));
 
         // 스플래시 데미지 적용하자
-        var subAttackAreas = transform.GetComponentsInChildren<SubAttackArea>();
-        foreach (var item in subAttackAreas)
+        // SubAttackArea.cs 가진 모든 오브젝트 탐색
+        var subAttackAreas = transform.GetComponentsInChildren<SubAttackArea>(true);
+        // 공격자의 ActorType 가져옴
+        ActorTypeEnum myActorType = ActorType;
+        // 탐색된 오브젝트를 하나씩 foreach
+        foreach (var subAttackItem in subAttackAreas)
         {
-            switch (item.target)
+            // 탐색된 오브젝트 좌표 변환
+            var pos = subAttackItem.transform.position.ToVector2Int();
+            // 해당 좌표의 블럭 정보를 가져옴
+            if (GroundManager.Instance.blockInfoMap.TryGetValue(pos, out BlockInfo block))
             {
-                case SubAttackArea.Target.EnemyOnly:
-                    break;
-                case SubAttackArea.Target.AllyOnly:
-                    break;
-                case SubAttackArea.Target.All:
-                    break;
+                // 행동가능개체가 없다면 continue
+                if (block.actor == null)
+                    continue;
+                // 블럭의 Actor개체 받아옴
+                Actor subAttackTarget = block.actor;
+                
+                // subAttack의 TargetType에 따라서
+                switch (subAttackItem.target)
+                {
+                    case SubAttackArea.Target.EnemyOnly:
+                        if (subAttackTarget.ActorType == myActorType)
+                            continue;
+                        break;
+                    case SubAttackArea.Target.AllyOnly:
+                        if (subAttackTarget.ActorType != myActorType)
+                            continue;
+                        break;
+                }
+                // 캐릭터 데미지와 subAttack의 데미지비율을 곱하여 적에게 넘겨줌
+                int subAttackPower = Mathf.RoundToInt(power * subAttackItem.damageRatio);
+                StartCoroutine(attackTarget.TakeHitCo(subAttackPower));
             }
-
-            int subAttackPower = Mathf.RoundToInt(power * item.damageRatio);
-            StartCoroutine(attackTarget.TakeHitCo(subAttackPower));
         }
 
         yield return new WaitForSeconds(attackTime);
