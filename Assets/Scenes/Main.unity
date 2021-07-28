@@ -55110,12 +55110,17 @@ MonoBehaviour:
     allowLevel: 1
     sellPrice: 100
     buyPrice: 20
-    iconName: "\uAFB8\uAFB8\uAE4C\uAE4C"
+    iconName: apple
   - ID: 2
     allowLevel: 2
     sellPrice: 200
     buyPrice: 40
-    iconName: "\uC03C\uAFB8\uC03C"
+    iconName: armor
+  - ID: 3
+    allowLevel: 1
+    sellPrice: 300
+    buyPrice: 60
+    iconName: axe
   dropItemGroupData:
   - ID: 1
     dropItems:
@@ -55123,6 +55128,8 @@ MonoBehaviour:
       ratio: 0.95
     - dropItemID: 2
       ratio: 3.37
+    - dropItemID: 3
+      ratio: 2
 --- !u!1001 &1350003027
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -30,6 +30,8 @@ public class Player : Actor
 
     void SetLevelData()
     {
+        if (GlobalData.Instance.playerDataMap.ContainsKey(level.Value))
+            Debug.LogError("레벨 정보 없다");// 네 그런거같아요 
         var data = GlobalData.Instance.playerDataMap[level.Value];
         maxExp = data.maxExp;
         hp = maxHp = data.maxHp;
