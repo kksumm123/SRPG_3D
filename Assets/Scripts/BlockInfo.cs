@@ -51,9 +51,9 @@ public class BlockInfo : MonoBehaviour
             case GameStateType.SelectToAttackTarget:
                 SelectToAttackTarget();
                 break;
-            case GameStateType.AttackTartget:
-                AttackTartget();
-                break;
+            //case GameStateType.AttackTartget:
+            //    AttackTartget();
+            //    break;
 
             case GameStateType.NotInit:
             case GameStateType.IngPlayerMove:
@@ -143,11 +143,6 @@ public class BlockInfo : MonoBehaviour
             }
         }
     }
-
-    private void AttackTartget()
-    {
-    }
-
     void ShowMoveableBlocks(int moveDistance)
     {
         //var blocks = Physics.OverlapSphere(transform.position, actor.moveDistance);
@@ -169,7 +164,7 @@ public class BlockInfo : MonoBehaviour
             }
         }
     }
-    void ClearMoveableArea()
+    public static void ClearMoveableArea()
     {
         highlightedMoveableArea.ForEach(x => x.ToChangeOriginColor());
         highlightedMoveableArea.Clear();
