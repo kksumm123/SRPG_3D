@@ -40611,10 +40611,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActorStateUI
       objectReference: {fileID: 0}
-    - target: {fileID: 1955770808218088070, guid: e1662a8a239046a4e96c22c400b07c84, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1955770808218088071, guid: e1662a8a239046a4e96c22c400b07c84, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -54784,16 +54780,16 @@ MonoBehaviour:
   completeUiInite: 0
   playerDatas:
   - level: 1
-    hp: 30
-    mp: 30
+    maxHp: 30
+    maxMp: 30
     maxExp: 10
   - level: 2
-    hp: 35
-    mp: 35
+    maxHp: 35
+    maxMp: 35
     maxExp: 15
   - level: 3
-    hp: 40
-    mp: 40
+    maxHp: 40
+    maxMp: 40
     maxExp: 20
 --- !u!1001 &1350003027
 PrefabInstance:
