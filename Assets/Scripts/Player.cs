@@ -24,6 +24,11 @@ public class Player : Actor
         exp = new SaveInt("exp" + ID, 0);
         level = new SaveInt("level" + ID, 1);
         comment = new SaveString("comment" + ID);
+        SetLevelData();
+    }
+
+    void SetLevelData()
+    {
         var data = GlobalData.Instance.playerDataMap[level.Value];
         maxExp = data.maxExp;
         maxHp = data.maxHp;
