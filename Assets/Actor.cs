@@ -228,7 +228,7 @@ public class Actor : MonoBehaviour
                 }
                 // 캐릭터 데미지와 subAttack의 데미지비율을 곱하여 적에게 넘겨줌
                 int subAttackPower = Mathf.RoundToInt(power * subAttackItem.damageRatio);
-                StartCoroutine(attackTarget.TakeHitCo(subAttackPower));
+                StartCoroutine(subAttackTarget.TakeHitCo(subAttackPower));
             }
         }
 
