@@ -36,9 +36,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (GameState == GameStateType.SelectedPlayerMoveOrAct
-                ||
-                GameState == GameStateType.SelectToAttackTarget)
+            if (IsCancelState())
             {
                 BlockInfo.ClearMoveableArea();
                 Player.SelectedPlayer.ClearEnemyExistPoint();
@@ -49,6 +47,16 @@ public class StageManager : SingletonMonoBehavior<StageManager>
                 ContextMenuUI.Instance.ShoStageMenu(Input.mousePosition);
         }
     }
+
+    bool IsCancelState()
+    {
+        if (GameState == GameStateType.SelectedPlayerMoveOrAct)
+            return true;
+        if (GameState == GameStateType.SelectToAttackTarget)
+            return true;
+
+        return false;
+    }   
 
     public void EndTurnPlayer()
     {
