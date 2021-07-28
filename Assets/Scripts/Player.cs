@@ -15,6 +15,7 @@ public class Player : Actor
     {
         base.Awake();
         Players.Add(this);
+        InitLevelData();
     }
 
     void InitLevelData()
@@ -47,8 +48,6 @@ public class Player : Actor
         //SelectedPlayer = this;
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
         FollowTarget.Instance.SetTarget(transform);
-        InitLevelData();
-
     }
 
     Coroutine findPathCoHandle;
