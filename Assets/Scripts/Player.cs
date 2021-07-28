@@ -15,10 +15,17 @@ public class Player : Actor
     {
         base.Awake();
         Players.Add(this);
+        InitExpAndLevel();
+    }
+
+    void InitExpAndLevel()
+    {
         exp = new SaveInt("exp" + ID);
         level = new SaveInt("level" + ID);
         comment = new SaveString("comment" + ID);
+        maxExp = level.Value * 10;
     }
+
     [ContextMenu("저장 테스트")]
     void TestSave()
     {
@@ -81,6 +88,7 @@ public class Player : Actor
     void AddExp(int rewardExp)
     {
         // 경험치 추가
+        exp.Value += rewardExp;
 
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
 
