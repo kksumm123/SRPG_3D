@@ -29,6 +29,10 @@ public class ItemDropInfo
 {
     public int dropItemID;
     public float ratio; // 드랍확률
+    public override string ToString()
+    {
+        return $"{dropItemID}, {ratio}";
+    }
 }
 [System.Serializable]
 public class DropItemGroupData

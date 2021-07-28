@@ -55091,7 +55091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6dfc2f12df21f0489d4479dcdc4c2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeUiInite: 0
+  completeUiInite: 1
   playerDatas:
   - level: 1
     maxHp: 30
@@ -55105,6 +55105,24 @@ MonoBehaviour:
     maxHp: 40
     maxMp: 40
     maxExp: 20
+  itemDatas:
+  - ID: 1
+    allowLevel: 1
+    sellPrice: 100
+    buyPrice: 20
+    iconName: "\uAFB8\uAFB8\uAE4C\uAE4C"
+  - ID: 2
+    allowLevel: 2
+    sellPrice: 200
+    buyPrice: 40
+    iconName: "\uC03C\uAFB8\uC03C"
+  dropItemGroupData:
+  - ID: 1
+    dropItems:
+    - dropItemID: 1
+      ratio: 0.95
+    - dropItemID: 2
+      ratio: 3.37
 --- !u!1001 &1350003027
 PrefabInstance:
   m_ObjectHideFlags: 0

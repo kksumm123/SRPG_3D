@@ -91,7 +91,8 @@ public class Player : Actor
         if (monster.status == StatusType.Die)
         {
             AddExp(monster.rewardExp);
-            DropItem(monster.dropGroupID);
+            if (monster.dropGroup.ratio > Random.Range(0, 1f))
+                DropItem(monster.dropGroup.dropItemID);
         }
         StageManager.GameState = GameStateType.SelectPlayer;
     }
@@ -101,7 +102,7 @@ public class Player : Actor
         var dropGroup = GlobalData.Instance.dropItemGroupDataMap[dropGroupID];
 
         var dropItemRatioInfo = dropGroup.dropItems.OrderByDescending(x => x.ratio * Random.Range(0, 1f)).First();
-        Debug.Log($"{dropItemRatioInfo.dropItemID}, {dropItemRatioInfo.ratio}");
+        Debug.Log(dropItemRatioInfo.ToString());
 
         var dropItem = GlobalData.Instance.itemDataMap[dropItemRatioInfo.dropItemID];
         Debug.Log(dropItem.ToString());

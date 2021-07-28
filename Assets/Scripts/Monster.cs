@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 public class Monster : Actor
 {
-    public int dropGroupID;
+    public ItemDropInfo dropGroup;
     public static List<Monster> Monsters = new List<Monster>();
     public int rewardExp = 5;
 
