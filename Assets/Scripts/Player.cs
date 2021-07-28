@@ -15,13 +15,12 @@ public class Player : Actor
     {
         base.Awake();
         Players.Add(this);
-        InitLevelData();
     }
 
     void InitLevelData()
     {
-        exp = new SaveInt("exp" + ID);
-        level = new SaveInt("level" + ID);
+        exp = new SaveInt("exp" + ID, 0);
+        level = new SaveInt("level" + ID, 1);
         comment = new SaveString("comment" + ID);
         var data = GlobalData.Instance.playerDataMap[level.Value];
         maxExp = data.maxExp;
@@ -48,6 +47,8 @@ public class Player : Actor
         //SelectedPlayer = this;
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
         FollowTarget.Instance.SetTarget(transform);
+        InitLevelData();
+
     }
 
     Coroutine findPathCoHandle;

@@ -8,7 +8,7 @@ public class SaveInt
     string key;
     [SerializeField]
     int value;
-    public SaveInt(string _key)
+    public SaveInt(string _key, int defaultValue = 0)
     {
         //key = Application.dataPath + GetType() + _key;
         key = GetType() + _key;
@@ -16,7 +16,7 @@ public class SaveInt
         if (PlayerPrefs.HasKey(key))
             value = PlayerPrefs.GetInt(key);
         else
-            value = 0;
+            value = defaultValue;
     }
 
     public int Value
