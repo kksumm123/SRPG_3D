@@ -40,9 +40,10 @@ public class StageManager : SingletonMonoBehavior<StageManager>
                 ||
                 GameState == GameStateType.SelectToAttackTarget)
             {
-                Player.SelectedPlayer = null;
                 BlockInfo.ClearMoveableArea();
+                Player.SelectedPlayer.ClearEnemyExistPoint();
                 GameState = GameStateType.SelectPlayer;
+                Player.SelectedPlayer = null;
             }
             else
                 ContextMenuUI.Instance.ShoStageMenu(Input.mousePosition);
