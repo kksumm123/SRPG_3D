@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalData : MonoBehaviour
+public class GlobalData : SingletonMonoBehavior<GlobalData>
 {
     
 }
