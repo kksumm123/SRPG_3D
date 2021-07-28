@@ -31,8 +31,8 @@ public class Player : Actor
     {
         var data = GlobalData.Instance.playerDataMap[level.Value];
         maxExp = data.maxExp;
-        maxHp = data.maxHp;
-        maxMp = data.maxMp;
+        hp = maxHp = data.maxHp;
+        mp = maxMp = data.maxMp;
     }
 
     [ContextMenu("저장 테스트")]
