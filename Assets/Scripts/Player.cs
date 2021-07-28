@@ -8,10 +8,22 @@ using UnityEngine;
 public class Player : Actor
 {
     public static List<Player> Players = new List<Player>();
+    public int ID;
+    public SaveInt exp, level;
+    public SaveString comment;
     new void Awake()
     {
         base.Awake();
         Players.Add(this);
+        exp = new SaveInt("exp" + ID);
+        level = new SaveInt("level" + ID);
+        comment = new SaveString("comment" + ID);
+    }
+    [ContextMenu("저장 테스트")]
+    void TestSave()
+    {
+        exp.Value += 1;
+        comment.Value += 'a';
     }
     new private void OnDestroy()
     {
@@ -64,15 +76,15 @@ public class Player : Actor
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    int exp, level;
-    int maxExp;
+    //int exp, level;
+    //int maxExp;
     void AddExp(object rewardExp)
     {
         // 경험치 추가
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
 
-        PlayerPrefs.SetInt("exp", exp);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetInt("exp", exp);
+        //PlayerPrefs.Save();
     }
 
     internal bool OnMoveable(Vector3 position, int maxDistance)
