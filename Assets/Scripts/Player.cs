@@ -101,7 +101,8 @@ public class Player : Actor
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
         if (exp.Value >= maxExp)
         { // 래밸 중가할 경우 현재 hp, mp 회복, 최대 hp, mp 증가
-
+            SetLevelData();
+            CenterNotifyUI.Instance.Show($"레벨업 ! lv.{level}");
         }
     }
 
