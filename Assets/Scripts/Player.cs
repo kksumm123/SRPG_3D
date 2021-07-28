@@ -64,9 +64,12 @@ public class Player : Actor
         StageManager.GameState = GameStateType.SelectPlayer;
     }
 
-    private void AddExp(object rewardExp)
+    int exp, level;
+    int maxExp;
+    void AddExp(object rewardExp)
     {
-        throw new NotImplementedException();
+        // 경험치 추가
+        // 경험치가 최대 경험치보다 클 경우 레벨 증가
     }
 
     internal bool OnMoveable(Vector3 position, int maxDistance)
