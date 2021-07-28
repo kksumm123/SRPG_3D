@@ -72,6 +72,9 @@ public class Player : Actor
         if (IsInAttackArea(enemy.transform.position) == false)
             return false;
 
+        if (completeAct)
+            return false;
+
         return true;
     }
 
