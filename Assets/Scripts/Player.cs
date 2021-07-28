@@ -26,8 +26,8 @@ public class Player : Actor
         comment = new SaveString("comment" + ID);
         var data = GlobalData.Instance.playerDataMap[level.Value];
         maxExp = data.maxExp;
-        hp = data.hp;
-        mp = data.mp;
+        maxHp = data.maxHp;
+        maxMp = data.maxMp;
     }
 
     [ContextMenu("저장 테스트")]
@@ -94,8 +94,10 @@ public class Player : Actor
         exp.Value += rewardExp;
 
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
+        if (exp.Value >= maxExp)
+        { // 래밸 중가할 경우 현재 hp, mp 회복, 최대 hp, mp 증가
 
-        // 래밸 중가할 경우 hp, mp 회복, hp, mp 증가
+        }
     }
 
     internal bool OnMoveable(Vector3 position, int maxDistance)

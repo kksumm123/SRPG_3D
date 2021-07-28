@@ -34,17 +34,17 @@ public class ActorStateUI : SingletonMonoBehavior<ActorStateUI>
         mpBarGaugeImage = mpBarGauge.GetComponent<Image>();
 
         var size = hpBarGauge.sizeDelta;
-        size.x = actor.maxHP;
+        size.x = actor.maxHp;
         hpBarGauge.sizeDelta = size;
         hpBar.sizeDelta = size;
 
         size = mpBarGauge.sizeDelta;
-        size.x = actor.maxMP;
+        size.x = actor.maxMp;
         mpBarGauge.sizeDelta = size;
         mpBar.sizeDelta = size;
 
-        hpBarGaugeImage.fillAmount = actor.hp / actor.maxHP;
-        mpBarGaugeImage.fillAmount = actor.mp / actor.maxMP;
+        hpBarGaugeImage.fillAmount = actor.hp / actor.maxHp;
+        mpBarGaugeImage.fillAmount = actor.mp / actor.maxMp;
 
         nickName.text = actor.nickName;
         icon.sprite = Resources.Load<Sprite>($"Icon/{actor.iconName}");

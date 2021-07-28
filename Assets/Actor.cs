@@ -24,9 +24,9 @@ public class Actor : MonoBehaviour
     public string iconName;
     public int power;
     public float hp = 20;
-    public float maxHP = 20;
+    public float maxHp = 20;
     public float mp = 0;
-    public float maxMP = 0;
+    public float maxMp = 0;
     public StatusType status;
 
     public int moveDistance = 5;
