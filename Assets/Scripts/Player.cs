@@ -10,8 +10,9 @@ public class Player : Actor
     public static List<Player> Players = new List<Player>();
     public int ID;
     public SaveInt exp, level;
+    public int maxExp;
     public SaveString comment;
-    new void Awake()
+    new protected void Awake()
     {
         base.Awake();
         Players.Add(this);
@@ -35,7 +36,7 @@ public class Player : Actor
         exp.Value += 1;
         comment.Value += 'a';
     }
-    new private void OnDestroy()
+    new protected void OnDestroy()
     {
         base.OnDestroy();
         Players.Remove(this);
@@ -43,7 +44,7 @@ public class Player : Actor
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
     public static Player SelectedPlayer;
 
-    void Start()
+    protected void Start()
     {
         //SelectedPlayer = this;
         GroundManager.Instance.AddBlockInfo(transform.position, BlockType.Player, this);
@@ -87,7 +88,6 @@ public class Player : Actor
     }
 
     //int exp, level;
-    int maxExp;
     void AddExp(int rewardExp)
     {
         // 경험치 추가
