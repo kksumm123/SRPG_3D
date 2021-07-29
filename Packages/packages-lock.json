@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.av.smart-inspector": {
+      "version": "file:C:/Users/kksum/Downloads/Smart-Inspector-0.8.0-pre.1",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
