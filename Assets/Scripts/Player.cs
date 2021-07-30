@@ -156,6 +156,16 @@ public class Player : Actor
             StageManager.GameState = GameStateType.SelectToAttackTarget;
         else
             StageManager.GameState = GameStateType.SelectPlayer;
+
+        //도착한 지역에 아이템이 있다면 획득하자
+        var intPos = transform.position.ToVector2Int();
+        int itemID = GroundManager.Instance.blockInfoMap[intPos].dropItemID;
+        if (itemID > 0)
+        {
+            // 아이템 획득하기
+
+            // 땅에 존재하는 아이템 삭제하기
+        }
     }
 
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
