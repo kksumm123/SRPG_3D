@@ -165,6 +165,7 @@ public class Player : Actor
             // 아이템 획득하기
 
             // 땅에 존재하는 아이템 삭제하기
+            GroundManager.Instance.RemoveItem(transform.position);
         }
     }
 

@@ -89,4 +89,11 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         if (useDebugMode)
             blockInfoMap[pos].UpdateDebugInfo();
     }
+
+    public void RemoveItem(Vector3 position)
+    {
+        RemoveBlockInfo(transform.position, BlockType.Item);
+
+
+    }
 }
