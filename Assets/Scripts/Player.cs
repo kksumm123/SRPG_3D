@@ -33,6 +33,8 @@ public class Player : Actor
         var log = PlayerPrefs.GetString(PlayerDataKey);
         print(log);
         data = JsonUtility.FromJson<PlayerData>(log);
+        if (data == null)
+            data = new PlayerData();
 
         SetLevelData();
     }
@@ -196,6 +198,10 @@ public class Player : Actor
         public List<int> haveItem = new List<int>();
         public int exp;
         public int level;
+        public PlayerData()
+        {
+            level = 1;
+        }
     }
     public PlayerData data;
     string PlayerDataKey => "PlayerData" + ID;
