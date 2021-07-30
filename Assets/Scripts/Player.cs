@@ -21,7 +21,6 @@ public class Player : Actor
         set { data.level = value; }
     }
     public int maxExp;
-    public SaveString comment;
     new protected void Awake()
     {
         base.Awake();
@@ -31,14 +30,13 @@ public class Player : Actor
 
     void InitLevelData()
     {
-        comment = new SaveString("comment" + ID);
         SetLevelData();
     }
 
     void SetLevelData()
     {
         if (GlobalData.Instance.playerDataMap.ContainsKey(level) == false)
-            Debug.LogError("레벨 정보 없다");// 네 그런거같아요 
+            Debug.LogError("레벨 정보 없다");
         var data = GlobalData.Instance.playerDataMap[level];
         maxExp = data.maxExp;
         hp = maxHp = data.maxHp;
