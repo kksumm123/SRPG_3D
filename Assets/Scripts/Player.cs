@@ -10,7 +10,16 @@ public class Player : Actor
 {
     public static List<Player> Players = new List<Player>();
     public int ID;
-    public SaveInt exp, level;
+    public int exp
+    {
+        get { return data.exp; }
+        set { data.exp = value; }
+    }
+    public int level
+    {
+        get { return data.level; }
+        set { data.level = value; }
+    }
     public int maxExp;
     public SaveString comment;
     new protected void Awake()
@@ -22,28 +31,20 @@ public class Player : Actor
 
     void InitLevelData()
     {
-        exp = new SaveInt("exp" + ID, 0);
-        level = new SaveInt("level" + ID, 1);
         comment = new SaveString("comment" + ID);
         SetLevelData();
     }
 
     void SetLevelData()
     {
-        if (GlobalData.Instance.playerDataMap.ContainsKey(level.Value) == false)
+        if (GlobalData.Instance.playerDataMap.ContainsKey(level) == false)
             Debug.LogError("레벨 정보 없다");// 네 그런거같아요 
-        var data = GlobalData.Instance.playerDataMap[level.Value];
+        var data = GlobalData.Instance.playerDataMap[level];
         maxExp = data.maxExp;
         hp = maxHp = data.maxHp;
         mp = maxMp = data.maxMp;
     }
 
-    [ContextMenu("저장 테스트")]
-    void TestSave()
-    {
-        exp.Value += 1;
-        comment.Value += 'a';
-    }
     new protected void OnDestroy()
     {
         base.OnDestroy();
@@ -120,13 +121,13 @@ public class Player : Actor
     void AddExp(int rewardExp)
     {
         // 경험치 추가
-        exp.Value += rewardExp;
+        exp += rewardExp;
 
         // 경험치가 최대 경험치보다 클 경우 레벨 증가
-        if (exp.Value >= maxExp)
+        if (exp >= maxExp)
         { // 래밸 중가할 경우 현재 hp, mp 회복, 최대 hp, mp 증가
-            exp.Value -= maxExp;
-            level.Value++;
+            exp -= maxExp;
+            level++;
             SetLevelData();
             CenterNotifyUI.Instance.Show($"레벨업 ! lv.{level}");
         }
