@@ -172,6 +172,7 @@ public class BlockInfo : MonoBehaviour
     GameObject debutTextGos;
     internal Actor actor;
     internal int dropItemID;
+    internal GameObject dropItemGo;
 
     public void UpdateDebugInfo()
     {

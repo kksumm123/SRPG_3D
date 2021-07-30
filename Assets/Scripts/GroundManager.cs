@@ -61,6 +61,7 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
         Vector2Int pos = position.ToVector2Int();
         blockInfoMap[pos].blockType |= addBlockType;
         blockInfoMap[pos].dropItemID = dropItem.ID;
+        blockInfoMap[pos].dropItemGo = dropItemGo;
 
         if (useDebugMode)
             blockInfoMap[pos].UpdateDebugInfo();
@@ -92,8 +93,9 @@ public class GroundManager : SingletonMonoBehavior<GroundManager>
 
     public void RemoveItem(Vector3 position)
     {
+        var blockInfo = blockInfoMap[position.ToVector2Int()];
+        blockInfo.dropItemID = 0;
+        Destroy(blockInfo.dropItemGo);
         RemoveBlockInfo(transform.position, BlockType.Item);
-
-
     }
 }
