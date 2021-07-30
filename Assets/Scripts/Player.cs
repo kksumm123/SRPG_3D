@@ -103,7 +103,7 @@ public class Player : Actor
     {
         DropItem(1, transform.position);
     }
-    void DropItem(int dropGroupID, Vector3? position = null)
+    void DropItem(int dropGroupID, Vector3 position)
     {
         var dropGroup = GlobalData.Instance.dropItemGroupDataMap[dropGroupID];
 
@@ -113,7 +113,7 @@ public class Player : Actor
         var dropItem = GlobalData.Instance.itemDataMap[dropItemRatioInfo.dropItemID];
         Debug.Log(dropItem.ToString());
 
-        GroundManager.Instance.AddBlockInfo(position.Value, BlockType.Item, dropItem);
+        GroundManager.Instance.AddBlockInfo(position, BlockType.Item, dropItem);
     }
 
     //int exp, level;
