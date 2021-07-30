@@ -163,10 +163,16 @@ public class Player : Actor
         if (itemID > 0)
         {
             // 아이템 획득하기
+            AddItem(itemID);
 
             // 땅에 존재하는 아이템 삭제하기
             GroundManager.Instance.RemoveItem(transform.position);
         }
+    }
+
+    void AddItem(int itemID)
+    {
+
     }
 
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
