@@ -170,9 +170,11 @@ public class Player : Actor
         }
     }
 
+    //내가 가진 아이템들
+    List<int> haveItem = new List<int>();
     void AddItem(int itemID)
     {
-
+        haveItem.Add(itemID);
     }
 
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
