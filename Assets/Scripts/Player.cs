@@ -30,6 +30,10 @@ public class Player : Actor
 
     void InitLevelData()
     {
+        var log = PlayerPrefs.GetString(PlayerDataKey);
+        print(log);
+        data = JsonUtility.FromJson<PlayerData>(log);
+
         SetLevelData();
     }
 
@@ -47,7 +51,24 @@ public class Player : Actor
     {
         base.OnDestroy();
         Players.Remove(this);
+
+        SaveData();
     }
+    void SaveData()
+    {
+        string json = JsonUtility.ToJson(data);
+
+        try
+        {
+            PlayerPrefs.SetString(PlayerDataKey, json);
+            Debug.Log($"json : {json}");
+        }
+        catch (System.Exception err)
+        {
+            Debug.Log($"Got : {err}");
+        }
+    }
+
     public override ActorTypeEnum ActorType { get => ActorTypeEnum.Player; }
     public static Player SelectedPlayer;
 
@@ -177,6 +198,8 @@ public class Player : Actor
         public int level;
     }
     public PlayerData data;
+    string PlayerDataKey => "PlayerData" + ID;
+
     void AddItem(int itemID)
     {
         data.haveItem.Add(itemID);
