@@ -94,7 +94,7 @@ public class Player : Actor
         {
             AddExp(monster.rewardExp);
             if (monster.dropGroup.ratio > Random.Range(0, 1f))
-                DropItem(monster.dropGroup.dropItemID);
+                DropItem(monster.dropGroup.dropItemID, monster.transform.position);
         }
         StageManager.GameState = GameStateType.SelectPlayer;
     }
