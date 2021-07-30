@@ -151,6 +151,14 @@ public class Actor : MonoBehaviour
                 Vector3 playerNewPos = new Vector3(item.x, myPosVec3.y, item.y);
                 StartCoroutine(LookAtLerp(playerNewPos));
                 transform.DOMove(playerNewPos, moveDelay).SetEase(Ease.Linear);
+                var newPosBlock = GroundManager.Instance.blockInfoMap[playerNewPos.ToVector2Int()];
+                newPosBlock.transform.DOLocalMoveY(-0.3f, 0.2f)
+                    .SetLoops(2, LoopType.Yoyo)
+                    .OnComplete(
+                        () => newPosBlock.transform.DOLocalMoveY(0.3f, 0.2f)
+                            .OnComplete(
+                                () => newPosBlock.transform.DOLocalMoveY(0, 0.2f))
+                                );
                 yield return new WaitForSeconds(moveDelay);
             }
         }
@@ -213,7 +221,7 @@ public class Actor : MonoBehaviour
                     continue;
                 // 블럭의 Actor개체 받아옴
                 Actor subAttackTarget = block.actor;
-                
+
                 // subAttack의 TargetType에 따라서
                 switch (subAttackItem.target)
                 {
