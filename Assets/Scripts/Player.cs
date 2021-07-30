@@ -148,7 +148,13 @@ public class Player : Actor
         if (exp >= maxExp)
         { // 래밸 중가할 경우 현재 hp, mp 회복, 최대 hp, mp 증가
             exp -= maxExp;
-            level++;
+            
+            int maxLevel = GlobalData.Instance.playerDataMap.Last().Key;
+            if (level == maxLevel)
+                CenterNotifyUI.Instance.Show($"최대 레벨은 {maxLevel}입니다.");
+            else
+                level++;
+
             SetLevelData();
             CenterNotifyUI.Instance.Show($"레벨업 ! lv.{level}");
         }
