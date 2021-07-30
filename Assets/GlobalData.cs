@@ -57,4 +57,20 @@ public class GlobalData : SingletonMonoBehavior<GlobalData>
         itemDataMap = itemDatas.ToDictionary(x => x.ID);
         dropItemGroupDataMap = dropItemGroupData.ToDictionary(x => x.ID);
     }
+
+    [ContextMenu("PlayerLevelData초기설정")]
+    void InitPlayerData()
+    {
+        for (int i = playerDatas.Count; i < 60; i++)
+        {
+            var prev = playerDatas[i - 1];
+            playerDatas.Add(new PlayerLevelData()
+            {
+                level = prev.level + 1,
+                maxExp = prev.maxExp + 5,
+                maxHp = prev.maxHp + 5,
+                maxMp = prev.maxMp + 5
+            }) ;
+        }
+    }
 }
