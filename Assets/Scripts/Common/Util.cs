@@ -65,7 +65,7 @@ internal class Util
         {
             if (!(go.hideFlags == HideFlags.NotEditable || go.hideFlags == HideFlags.HideAndDontSave || go.hideFlags == HideFlags.HideInHierarchy))
             {
-                T t = (T)go;
+                //T t = (T)go;
 
                 //Debug.LogWarning($"{typeof(T)} :: ({go}: {go.GetType()} {t.gameObject}");
 
