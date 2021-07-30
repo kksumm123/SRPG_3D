@@ -169,12 +169,18 @@ public class Player : Actor
             GroundManager.Instance.RemoveItem(transform.position);
         }
     }
-
-    //내가 가진 아이템들
-    List<int> haveItem = new List<int>();
+    [System.Serializable]
+    public class PlayerData
+    {
+        //내가 가진 아이템들
+        public List<int> haveItem = new List<int>();
+        public int exp;
+        public int level;
+    }
+    public PlayerData data;
     void AddItem(int itemID)
     {
-        haveItem.Add(itemID);
+        data.haveItem.Add(itemID);
     }
 
     public List<BlockInfo> enemyExistPoint = new List<BlockInfo>();
